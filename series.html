@@ -9,35 +9,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="series-page">
+<body class="series-page series-h">
 
 <div id="site-nav"></div>
 
-<!-- Fixed vertical progress dots -->
-<nav class="sp" id="sp" aria-label="Series navigation">
-  <div class="sp__track" id="spTrack"></div>
-  <span class="sp__label" id="spLabel">01 / 09</span>
+<!-- Left / Right arrows -->
+<button class="sv-arrow sv-arrow--l" id="svPrev" aria-label="Previous">
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M14 4L7 11L14 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<button class="sv-arrow sv-arrow--r" id="svNext" aria-label="Next">
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M8 4L15 11L8 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<!-- Panel counter -->
+<div class="sv-counter" id="svCounter"></div>
+
+<!-- Horizontal progress dots -->
+<nav class="sp-h" id="spNav" aria-label="Product navigation">
+  <div class="sp-h__track" id="spTrack"></div>
 </nav>
 
 <main>
-
-  <!-- ── HERO ─────────────────────────────────────────── -->
-  <section class="sv-hero">
-    <div class="sv-hero__inner">
-      <p class="eyebrow eyebrow--light">Curated Collection</p>
-      <h1 class="sv-hero__h">The <em>Series.</em></h1>
-      <p class="sv-hero__sub">Nine terrariums. Nine Philippine landscapes.<br>Each one built to carry a place with you.</p>
-    </div>
-    <div class="sv-hero__down" aria-hidden="true">
-      <span>Scroll</span>
-      <svg width="14" height="22" viewBox="0 0 14 22" fill="none"><rect x="5" y="0" width="4" height="10" rx="2" fill="currentColor" opacity=".3"/><path d="M2 14l5 6 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-  </section>
-
-  <!-- ── SCENES ─────────────────────────────────────── -->
   <div class="sv-track" id="svTrack">
 
-    <!-- 01 MOUNTAINSCAPE -->
+    <!-- ── PANEL 0 — HERO ─────────────────────────────── -->
+    <div class="sv-scene sv-scene--hero">
+      <div class="sv-inner">
+        <div class="sv-hero-bg"></div>
+        <div class="sv-hero-content">
+          <p class="eyebrow eyebrow--light">Curated Collection</p>
+          <h1 class="sv-hero__h">The <em>Series.</em></h1>
+          <p class="sv-hero__sub">Nine terrariums. Nine Philippine landscapes.<br>Each one built to carry a place with you.</p>
+          <div class="sv-hero__hint">
+            <span>Scroll right to explore</span>
+            <svg width="40" height="16" viewBox="0 0 40 16" fill="none">
+              <path d="M0 8h36M30 2l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PANEL 1 — MOUNTAINSCAPE ───────────────────── -->
     <section class="sv-scene" data-idx="0">
       <div class="sv-inner">
         <div class="sv-visual">
@@ -65,7 +78,7 @@
       </div>
     </section>
 
-    <!-- 02 BONSAI -->
+    <!-- ── PANEL 2 — BONSAI ──────────────────────────── -->
     <section class="sv-scene" data-idx="1">
       <div class="sv-inner">
         <div class="sv-visual">
@@ -93,7 +106,7 @@
       </div>
     </section>
 
-    <!-- 03 SULU -->
+    <!-- ── PANEL 3 — SULU ────────────────────────────── -->
     <section class="sv-scene" data-idx="2">
       <div class="sv-inner">
         <div class="sv-visual">
@@ -121,7 +134,7 @@
       </div>
     </section>
 
-    <!-- 04 SIBUYAN -->
+    <!-- ── PANEL 4 — SIBUYAN ─────────────────────────── -->
     <section class="sv-scene" data-idx="3">
       <div class="sv-inner">
         <div class="sv-visual">
@@ -149,7 +162,7 @@
       </div>
     </section>
 
-    <!-- 05 ETERNAL -->
+    <!-- ── PANEL 5 — ETERNAL ─────────────────────────── -->
     <section class="sv-scene" data-idx="4">
       <div class="sv-inner">
         <div class="sv-visual">
@@ -177,7 +190,7 @@
       </div>
     </section>
 
-    <!-- 06 MINISCAPE -->
+    <!-- ── PANEL 6 — MINISCAPE ───────────────────────── -->
     <section class="sv-scene" data-idx="5">
       <div class="sv-inner">
         <div class="sv-visual">
@@ -205,7 +218,7 @@
       </div>
     </section>
 
-    <!-- 07 MINI BLOOM -->
+    <!-- ── PANEL 7 — MINI BLOOM ──────────────────────── -->
     <section class="sv-scene" data-idx="6">
       <div class="sv-inner">
         <div class="sv-visual">
@@ -233,7 +246,7 @@
       </div>
     </section>
 
-    <!-- 08 TALON -->
+    <!-- ── PANEL 8 — TALON ───────────────────────────── -->
     <section class="sv-scene" data-idx="7">
       <div class="sv-inner">
         <div class="sv-visual">
@@ -261,7 +274,7 @@
       </div>
     </section>
 
-    <!-- 09 EL NIDO -->
+    <!-- ── PANEL 9 — EL NIDO ─────────────────────────── -->
     <section class="sv-scene" data-idx="8">
       <div class="sv-inner">
         <div class="sv-visual">
@@ -289,80 +302,117 @@
       </div>
     </section>
 
-  </div><!-- /sv-track -->
-
-  <!-- ── CLOSING CTA ──────────────────────────────── -->
-  <section class="sv-closing">
-    <div class="sv-closing__inner">
-      <p class="eyebrow eyebrow--light">Can't decide?</p>
-      <h2>Build your own<br><em>landscape.</em></h2>
-      <p>Every piece begins with a conversation. Tell us your space, your story, your island — and we'll build something made only for you.</p>
-      <div class="sv-closing__btns">
-        <a href="create.html" class="btn btn--light">Start Creating</a>
-        <a href="workshops.html" class="btn btn--outline-light">Join a Workshop</a>
+    <!-- ── PANEL 10 — CLOSING CTA ────────────────────── -->
+    <div class="sv-scene sv-scene--cta">
+      <div class="sv-inner">
+        <div class="sv-cta-content">
+          <p class="eyebrow eyebrow--light">Can't decide?</p>
+          <h2 class="sv-cta-h">Build your own<br><em>landscape.</em></h2>
+          <p class="sv-cta-sub">Every piece begins with a conversation. Tell us your space, your story, your island — and we'll build something made only for you.</p>
+          <div class="sv-cta-btns">
+            <a href="create.html" class="btn btn--light">Start Creating</a>
+            <a href="workshops.html" class="btn btn--outline-light">Join a Workshop</a>
+          </div>
+          <a href="index.html" class="sv-back-home">← Back to Home</a>
+        </div>
       </div>
     </div>
-  </section>
 
+  </div><!-- /sv-track -->
 </main>
 
 <div id="site-footer"></div>
+
 <script src="js/components.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   initPage('series');
 
-  const scenes  = document.querySelectorAll('.sv-scene');
-  const spTrack = document.getElementById('spTrack');
-  const spLabel = document.getElementById('spLabel');
-  const total   = scenes.length;
+  const track    = document.getElementById('svTrack');
+  const scenes   = document.querySelectorAll('.sv-scene');
+  const prodScenes = document.querySelectorAll('.sv-scene[data-idx]');
+  const spTrack  = document.getElementById('spTrack');
+  const counter  = document.getElementById('svCounter');
+  const prevBtn  = document.getElementById('svPrev');
+  const nextBtn  = document.getElementById('svNext');
+  const total    = prodScenes.length;
 
-  /* Build progress dots */
-  scenes.forEach((scene, i) => {
+  /* Build progress dots (one per product scene) */
+  prodScenes.forEach((scene, i) => {
     const dot = document.createElement('button');
-    dot.className = 'sp__dot';
-    dot.setAttribute('aria-label', `Go to product ${i + 1}`);
+    dot.className = 'sp-h__dot';
+    dot.setAttribute('aria-label', 'Go to product ' + (i + 1));
     dot.addEventListener('click', () => {
-      scene.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      scene.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
     });
     spTrack.appendChild(dot);
   });
 
-  const dots = spTrack.querySelectorAll('.sp__dot');
+  const dots = spTrack.querySelectorAll('.sp-h__dot');
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
-  /* Smooth scale-on-center update */
+  /* Scale-on-center: runs on every scroll tick */
   function update() {
-    const vh       = window.innerHeight;
-    const vCenter  = vh / 2;
-    let   closest  = Infinity;
-    let   activeI  = 0;
+    const vw      = window.innerWidth;
+    const vCenter = vw / 2;
+    let   closest = Infinity;
+    let   activeI = -1;
 
-    scenes.forEach((scene, i) => {
-      const rect       = scene.getBoundingClientRect();
-      const sceneCenter = rect.top + rect.height / 2;
+    scenes.forEach(scene => {
+      const rect        = scene.getBoundingClientRect();
+      const sceneCenter = rect.left + rect.width / 2;
       const dist        = Math.abs(sceneCenter - vCenter);
-      const maxDist     = vh * 0.8;
+      const maxDist     = vw * 0.9;
       const t           = Math.max(0, 1 - dist / maxDist);
 
       const scale   = 0.82 + 0.18 * t;
-      const opacity = 0.38 + 0.62 * t;
+      const opacity = 0.35 + 0.65 * t;
 
       const inner = scene.querySelector('.sv-inner');
-      inner.style.transform = `scale(${scale.toFixed(4)})`;
-      inner.style.opacity   = opacity.toFixed(4);
+      if (inner) {
+        inner.style.transform = 'scale(' + scale.toFixed(4) + ')';
+        inner.style.opacity   = opacity.toFixed(4);
+      }
 
-      if (dist < closest) { closest = dist; activeI = i; }
+      const idx = parseInt(scene.dataset.idx);
+      if (!isNaN(idx) && dist < closest) { closest = dist; activeI = idx; }
     });
 
-    /* update dots + label */
-    dots.forEach((d, i) => d.classList.toggle('sp__dot--on', i === activeI));
-    if (spLabel) spLabel.textContent = `${pad(activeI + 1)} / ${pad(total)}`;
+    dots.forEach((d, i) => d.classList.toggle('sp-h__dot--on', i === activeI));
+
+    if (counter) {
+      counter.textContent = activeI >= 0
+        ? pad(activeI + 1) + ' / ' + pad(total)
+        : '';
+    }
+
+    /* Arrow visibility */
+    if (prevBtn) prevBtn.style.opacity = track.scrollLeft < 10 ? '0.25' : '1';
+    if (nextBtn) nextBtn.style.opacity = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10 ? '0.25' : '1';
   }
 
-  window.addEventListener('scroll', update, { passive: true });
+  track.addEventListener('scroll', update, { passive: true });
   update();
+
+  /* Arrow buttons */
+  const scrollPanel = dir => track.scrollBy({ left: dir * window.innerWidth, behavior: 'smooth' });
+  prevBtn?.addEventListener('click', () => scrollPanel(-1));
+  nextBtn?.addEventListener('click', () => scrollPanel(1));
+
+  /* Keyboard left / right */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') scrollPanel(1);
+    if (e.key === 'ArrowLeft')  scrollPanel(-1);
+  });
+
+  /* Convert vertical mouse-wheel to horizontal scroll */
+  track.addEventListener('wheel', e => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      track.scrollLeft += e.deltaY * 1.5;
+    }
+  }, { passive: false });
 });
 </script>
 

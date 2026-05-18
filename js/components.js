@@ -177,6 +177,7 @@ function getNavHTML(activePage) {
             <a href="index.html#shop">Gift Cards</a>
           </div>
         </div>
+        ${navLink('series.html', 'The Series', 'series')}
         ${navLink('create.html', 'Create Your Own', 'create')}
         ${navLink('workshops.html', 'Workshops', 'workshops')}
         ${navLink('gallery.html', 'Gallery', 'gallery')}
@@ -212,6 +213,7 @@ function getNavHTML(activePage) {
     <div class="nav__mobile" id="mobileMenu">
       <a href="index.html">Home</a>
       <a href="index.html#shop">Shop</a>
+      <a href="series.html">The Series</a>
       <a href="create.html">Create Your Own</a>
       <a href="workshops.html">Workshops</a>
       <a href="gallery.html">Gallery</a>

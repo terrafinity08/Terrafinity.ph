@@ -2,10 +2,15 @@
 // main.js — homepage-specific logic (requires components.js)
 
 const products = [
-  { id: 1, name: 'Forest Sphere',  price: 128, badge: 'Bestseller', shape: 'sphere' },
-  { id: 2, name: 'Moss Haven',     price: 158, badge: null,         shape: 'geo'    },
-  { id: 3, name: 'The Sanctuary',  price: 98,  badge: null,         shape: 'jar'    },
-  { id: 4, name: 'Green Capsule',  price: 136, badge: null,         shape: 'dome'   },
+  { id: 'mountainscape', name: 'Mountainscape', price: 2800, badge: null,         shape: 'sphere', img: 'images/mountainscape.jpg' },
+  { id: 'bonsai',        name: 'Bonsai',        price: 3500, badge: 'Bestseller', shape: 'sphere', img: 'images/bonsai.jpg'        },
+  { id: 'sulu',          name: 'Sulu',          price: 3200, badge: null,         shape: 'geo',    img: 'images/sulu.jpg'          },
+  { id: 'sibuyan',       name: 'Sibuyan',       price: 2600, badge: null,         shape: 'jar',    img: 'images/sibuyan.jpg'       },
+  { id: 'eternal',       name: 'Eternal',       price: 2400, badge: null,         shape: 'dome',   img: 'images/eternal.jpg'       },
+  { id: 'miniscape',     name: 'Miniscape',     price: 4200, badge: 'Set of 4',   shape: 'jar',    img: 'images/miniscape.jpg'     },
+  { id: 'mini-bloom',    name: 'Mini Bloom',    price: 1800, badge: null,         shape: 'dome',   img: 'images/mini-bloom.jpg'    },
+  { id: 'talon',         name: 'Talon',         price: 3800, badge: null,         shape: 'geo',    img: 'images/talon.jpg'         },
+  { id: 'el-nido',       name: 'El Nido',       price: 3600, badge: null,         shape: 'sphere', img: 'images/el-nido.jpg'       },
 ];
 
 function productBg(shape) {
@@ -27,15 +32,16 @@ function renderProducts() {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
   grid.innerHTML = products.map(p => `
-    <div class="product-card" onclick="addToCart(${p.id},'${p.name}',${p.price})">
+    <div class="product-card" onclick="addToCart('${p.id}','${p.name}',${p.price})">
       <div class="product-card__img" style="background:${productBg(p.shape)}">
         ${p.badge ? `<span class="product-card__badge">${p.badge}</span>` : ''}
-        <div class="tc-wrap">${renderTerrariumShape(p.shape)}</div>
-        <button class="product-card__add" onclick="event.stopPropagation();addToCart(${p.id},'${p.name}',${p.price})">+</button>
+        <img src="${p.img}" alt="${p.name}" class="product-card__photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="tc-wrap" style="display:none">${renderTerrariumShape(p.shape)}</div>
+        <button class="product-card__add" onclick="event.stopPropagation();addToCart('${p.id}','${p.name}',${p.price})">+</button>
       </div>
       <div class="product-card__body">
         <p class="product-card__name">${p.name}</p>
-        <p class="product-card__price">$${p.price}.00</p>
+        <p class="product-card__price">₱${p.price.toLocaleString()}</p>
       </div>
     </div>`).join('');
 }

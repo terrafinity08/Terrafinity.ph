@@ -13,361 +13,291 @@
 
 <div id="site-nav"></div>
 
+<!-- Fixed vertical progress dots -->
+<nav class="sp" id="sp" aria-label="Series navigation">
+  <div class="sp__track" id="spTrack"></div>
+  <span class="sp__label" id="spLabel">01 / 09</span>
+</nav>
+
 <main>
 
-  <!-- SERIES HERO -->
-  <section class="series-hero">
-    <div class="series-hero__inner">
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="sv-hero">
+    <div class="sv-hero__inner">
       <p class="eyebrow eyebrow--light">Curated Collection</p>
-      <h1 class="series-hero__title">The <em>Series.</em></h1>
-      <p class="series-hero__sub">Nine landscapes. Nine stories. Each terrarium named after a Philippine island, mountain, or coastal wonder — hand-built to carry that place with you.</p>
-      <div class="series-hero__scroll">
-        <span>Scroll to explore</span>
-        <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="6" y="0" width="4" height="12" rx="2" fill="currentColor" opacity="0.3"/><path d="M3 16l5 6 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
+      <h1 class="sv-hero__h">The <em>Series.</em></h1>
+      <p class="sv-hero__sub">Nine terrariums. Nine Philippine landscapes.<br>Each one built to carry a place with you.</p>
+    </div>
+    <div class="sv-hero__down" aria-hidden="true">
+      <span>Scroll</span>
+      <svg width="14" height="22" viewBox="0 0 14 22" fill="none"><rect x="5" y="0" width="4" height="10" rx="2" fill="currentColor" opacity=".3"/><path d="M2 14l5 6 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
   </section>
 
-  <!-- PRODUCT: MOUNTAINSCAPE -->
-  <article class="series-item" id="mountainscape" data-index="0">
-    <div class="series-item__visual series-item__visual--left">
-      <div class="series-img-wrap">
-        <img src="images/mountainscape.jpg" alt="Mountainscape terrarium" class="series-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="series-img-fallback" style="background:linear-gradient(160deg,#a8c5b8,#7aada0,#4d8a7c);display:none">
-          <div class="sfb-arch"></div>
-          <div class="sfb-label">MOUNTAINSCAPE</div>
-        </div>
-      </div>
-    </div>
-    <div class="series-item__content">
-      <span class="series-num">01</span>
-      <p class="series-location">Mountain Province, PH</p>
-      <h2 class="series-name">Mountainscape</h2>
-      <p class="series-desc">A teardrop vessel cradling a mossy mountain arch — its silhouette framing a portal of open sky. Inspired by the misty cordillera highlands, where moss carpets ancient stone and the air smells of rain.</p>
-      <div class="series-meta">
-        <div class="series-detail">
-          <span class="series-detail__label">Vessel</span>
-          <span class="series-detail__val">Teardrop Egg Glass</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Palette</span>
-          <span class="series-detail__val">Mint · Teal · Moss</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Care</span>
-          <span class="series-detail__val">Low — indirect light</span>
-        </div>
-      </div>
-      <div class="series-cta">
-        <span class="series-price">₱2,800</span>
-        <button class="btn btn--light" onclick="addToCart('mountainscape','Mountainscape',2800)">Add to Cart</button>
-      </div>
-    </div>
-  </article>
+  <!-- ── SCENES ─────────────────────────────────────── -->
+  <div class="sv-track" id="svTrack">
 
-  <!-- PRODUCT: BONSAI -->
-  <article class="series-item series-item--flip" id="bonsai" data-index="1">
-    <div class="series-item__visual series-item__visual--right">
-      <div class="series-img-wrap">
-        <img src="images/bonsai.jpg" alt="Bonsai terrarium" class="series-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="series-img-fallback" style="background:linear-gradient(160deg,#b8ccd8,#8fabb8,#5a7a8c);display:none">
-          <div class="sfb-tree"></div>
-          <div class="sfb-label">BONSAI</div>
+    <!-- 01 MOUNTAINSCAPE -->
+    <section class="sv-scene" data-idx="0">
+      <div class="sv-inner">
+        <div class="sv-visual">
+          <img src="images/mountainscape.jpg" alt="Mountainscape" class="sv-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.background='linear-gradient(160deg,#a8c5b8,#7aada0,#4d8a7c)'" />
+          <div class="sv-img-fb"></div>
+        </div>
+        <div class="sv-overlay"></div>
+        <div class="sv-wm" aria-hidden="true">MOUNTAINSCAPE</div>
+        <div class="sv-card">
+          <span class="sv-num">01</span>
+          <p class="sv-loc">Mountain Province, PH</p>
+          <h2 class="sv-name">Mountainscape</h2>
+          <p class="sv-desc">A teardrop vessel cradling a mossy arch — its silhouette framing a portal of open sky. Inspired by the misty cordillera highlands.</p>
+          <div class="sv-meta">
+            <div><span>Vessel</span><span>Teardrop Egg Glass</span></div>
+            <div><span>Palette</span><span>Mint · Teal · Moss</span></div>
+            <div><span>Care</span><span>Low — indirect light</span></div>
+          </div>
+          <div class="sv-cta">
+            <span class="sv-price">₱2,800</span>
+            <button class="btn btn--light btn--sm" onclick="addToCart('mountainscape','Mountainscape',2800)">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="series-item__content">
-      <span class="series-num">02</span>
-      <p class="series-location">Baguio City, PH</p>
-      <h2 class="series-name">Bonsai</h2>
-      <p class="series-desc">A dramatic bonsai emerges from dark volcanic rock inside a large round sphere. The blue-gray sky within echoes the highland atmosphere of Baguio — cool, contemplative, eternal.</p>
-      <div class="series-meta">
-        <div class="series-detail">
-          <span class="series-detail__label">Vessel</span>
-          <span class="series-detail__val">Large Round Sphere</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Palette</span>
-          <span class="series-detail__val">Blue-Gray · Stone · Dark Soil</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Care</span>
-          <span class="series-detail__val">Medium — bright indirect</span>
-        </div>
-      </div>
-      <div class="series-cta">
-        <span class="series-price">₱3,500</span>
-        <button class="btn btn--light" onclick="addToCart('bonsai','Bonsai',3500)">Add to Cart</button>
-      </div>
-    </div>
-  </article>
+    </section>
 
-  <!-- PRODUCT: SULU -->
-  <article class="series-item" id="sulu" data-index="2">
-    <div class="series-item__visual series-item__visual--left">
-      <div class="series-img-wrap">
-        <img src="images/sulu.jpg" alt="Sulu terrarium" class="series-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="series-img-fallback" style="background:linear-gradient(160deg,#2a4a2e,#1a3020,#0e1e12);display:none">
-          <div class="sfb-vines"></div>
-          <div class="sfb-label">SULU</div>
+    <!-- 02 BONSAI -->
+    <section class="sv-scene" data-idx="1">
+      <div class="sv-inner">
+        <div class="sv-visual">
+          <img src="images/bonsai.jpg" alt="Bonsai" class="sv-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.background='linear-gradient(160deg,#b8ccd8,#8fabb8,#5a7a8c)'" />
+          <div class="sv-img-fb"></div>
+        </div>
+        <div class="sv-overlay"></div>
+        <div class="sv-wm" aria-hidden="true">BONSAI</div>
+        <div class="sv-card">
+          <span class="sv-num">02</span>
+          <p class="sv-loc">Baguio City, PH</p>
+          <h2 class="sv-name">Bonsai</h2>
+          <p class="sv-desc">A dramatic bonsai rises from volcanic rock inside a large round sphere — cool, contemplative, highland air captured in glass.</p>
+          <div class="sv-meta">
+            <div><span>Vessel</span><span>Large Round Sphere</span></div>
+            <div><span>Palette</span><span>Blue-Gray · Stone · Dark Soil</span></div>
+            <div><span>Care</span><span>Medium — bright indirect</span></div>
+          </div>
+          <div class="sv-cta">
+            <span class="sv-price">₱3,500</span>
+            <button class="btn btn--light btn--sm" onclick="addToCart('bonsai','Bonsai',3500)">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="series-item__content">
-      <span class="series-num">03</span>
-      <p class="series-location">Sulu Archipelago, PH</p>
-      <h2 class="series-name">Sulu</h2>
-      <p class="series-desc">A tall cylinder overgrown with dense forest moss and hanging vines, lit from within by warm amber LED. Like standing at the edge of a primordial jungle at dusk — alive, breathing, untamed.</p>
-      <div class="series-meta">
-        <div class="series-detail">
-          <span class="series-detail__label">Vessel</span>
-          <span class="series-detail__val">Tall Cylinder</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Palette</span>
-          <span class="series-detail__val">Deep Forest · Amber Glow</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Feature</span>
-          <span class="series-detail__val">Warm LED Lighting</span>
-        </div>
-      </div>
-      <div class="series-cta">
-        <span class="series-price">₱3,200</span>
-        <button class="btn btn--light" onclick="addToCart('sulu','Sulu',3200)">Add to Cart</button>
-      </div>
-    </div>
-  </article>
+    </section>
 
-  <!-- PRODUCT: SIBUYAN -->
-  <article class="series-item series-item--flip" id="sibuyan" data-index="3">
-    <div class="series-item__visual series-item__visual--right">
-      <div class="series-img-wrap">
-        <img src="images/sibuyan.jpg" alt="Sibuyan terrarium" class="series-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="series-img-fallback" style="background:linear-gradient(160deg,#5aad48,#3a8a2c,#1e5a14);display:none">
-          <div class="sfb-cave"></div>
-          <div class="sfb-label">SIBUYAN</div>
+    <!-- 03 SULU -->
+    <section class="sv-scene" data-idx="2">
+      <div class="sv-inner">
+        <div class="sv-visual">
+          <img src="images/sulu.jpg" alt="Sulu" class="sv-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.background='linear-gradient(160deg,#2a4a2e,#1a3020,#0e1e12)'" />
+          <div class="sv-img-fb"></div>
+        </div>
+        <div class="sv-overlay"></div>
+        <div class="sv-wm" aria-hidden="true">SULU</div>
+        <div class="sv-card">
+          <span class="sv-num">03</span>
+          <p class="sv-loc">Sulu Archipelago, PH</p>
+          <h2 class="sv-name">Sulu</h2>
+          <p class="sv-desc">Dense forest moss and hanging vines fill a tall cylinder, lit from within by warm amber LED. Primordial jungle at dusk — alive, breathing, untamed.</p>
+          <div class="sv-meta">
+            <div><span>Vessel</span><span>Tall Cylinder</span></div>
+            <div><span>Feature</span><span>Warm LED Lighting</span></div>
+            <div><span>Palette</span><span>Deep Forest · Amber Glow</span></div>
+          </div>
+          <div class="sv-cta">
+            <span class="sv-price">₱3,200</span>
+            <button class="btn btn--light btn--sm" onclick="addToCart('sulu','Sulu',3200)">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="series-item__content">
-      <span class="series-num">04</span>
-      <p class="series-location">Sibuyan Island, PH</p>
-      <h2 class="series-name">Sibuyan</h2>
-      <p class="series-desc">Vivid emerald light floods a tall rectangular glass where a dark cave formation hangs with draping moss. Sibuyan's rainforest is among the most biodiverse on Earth — this piece carries that impossible green.</p>
-      <div class="series-meta">
-        <div class="series-detail">
-          <span class="series-detail__label">Vessel</span>
-          <span class="series-detail__val">Tall Rectangle</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Palette</span>
-          <span class="series-detail__val">Vivid Green · Cave Dark</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Care</span>
-          <span class="series-detail__val">Low — thrives in dim light</span>
-        </div>
-      </div>
-      <div class="series-cta">
-        <span class="series-price">₱2,600</span>
-        <button class="btn btn--light" onclick="addToCart('sibuyan','Sibuyan',2600)">Add to Cart</button>
-      </div>
-    </div>
-  </article>
+    </section>
 
-  <!-- PRODUCT: ETERNAL -->
-  <article class="series-item" id="eternal" data-index="4">
-    <div class="series-item__visual series-item__visual--left">
-      <div class="series-img-wrap">
-        <img src="images/eternal.jpg" alt="Eternal terrarium" class="series-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="series-img-fallback" style="background:linear-gradient(160deg,#1a1a1a,#0d0d0d,#000);display:none">
-          <div class="sfb-flowers"></div>
-          <div class="sfb-label">ETERNAL</div>
+    <!-- 04 SIBUYAN -->
+    <section class="sv-scene" data-idx="3">
+      <div class="sv-inner">
+        <div class="sv-visual">
+          <img src="images/sibuyan.jpg" alt="Sibuyan" class="sv-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.background='linear-gradient(160deg,#5aad48,#3a8a2c,#1e5a14)'" />
+          <div class="sv-img-fb"></div>
+        </div>
+        <div class="sv-overlay"></div>
+        <div class="sv-wm" aria-hidden="true">SIBUYAN</div>
+        <div class="sv-card">
+          <span class="sv-num">04</span>
+          <p class="sv-loc">Sibuyan Island, PH</p>
+          <h2 class="sv-name">Sibuyan</h2>
+          <p class="sv-desc">Vivid emerald light floods a tall rectangle where a dark cave formation hangs with draping moss. Among the most biodiverse islands on Earth.</p>
+          <div class="sv-meta">
+            <div><span>Vessel</span><span>Tall Rectangle</span></div>
+            <div><span>Palette</span><span>Vivid Green · Cave Dark</span></div>
+            <div><span>Care</span><span>Low — thrives in dim light</span></div>
+          </div>
+          <div class="sv-cta">
+            <span class="sv-price">₱2,600</span>
+            <button class="btn btn--light btn--sm" onclick="addToCart('sibuyan','Sibuyan',2600)">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="series-item__content">
-      <span class="series-num">05</span>
-      <p class="series-location">Eternal — No Origin</p>
-      <h2 class="series-name">Eternal</h2>
-      <p class="series-desc">Against pure black, purple and white flowers bloom on a moss bed — pristine, impossibly still. This piece belongs to no single island. It is for the moments that feel like they exist outside of time.</p>
-      <div class="series-meta">
-        <div class="series-detail">
-          <span class="series-detail__label">Vessel</span>
-          <span class="series-detail__val">Round Bowl</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Palette</span>
-          <span class="series-detail__val">Black · Purple · White</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Theme</span>
-          <span class="series-detail__val">Floral · Preserved</span>
-        </div>
-      </div>
-      <div class="series-cta">
-        <span class="series-price">₱2,400</span>
-        <button class="btn btn--light" onclick="addToCart('eternal','Eternal',2400)">Add to Cart</button>
-      </div>
-    </div>
-  </article>
+    </section>
 
-  <!-- PRODUCT: MINISCAPE -->
-  <article class="series-item series-item--flip" id="miniscape" data-index="5">
-    <div class="series-item__visual series-item__visual--right">
-      <div class="series-img-wrap">
-        <img src="images/miniscape.jpg" alt="Miniscape terrarium set" class="series-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="series-img-fallback" style="background:linear-gradient(160deg,#1a1a1a,#111,#080808);display:none">
-          <div class="sfb-jars"></div>
-          <div class="sfb-label">MINISCAPE</div>
+    <!-- 05 ETERNAL -->
+    <section class="sv-scene" data-idx="4">
+      <div class="sv-inner">
+        <div class="sv-visual">
+          <img src="images/eternal.jpg" alt="Eternal" class="sv-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.background='linear-gradient(160deg,#1a1a1a,#0d0d0d,#000)'" />
+          <div class="sv-img-fb"></div>
+        </div>
+        <div class="sv-overlay"></div>
+        <div class="sv-wm" aria-hidden="true">ETERNAL</div>
+        <div class="sv-card">
+          <span class="sv-num">05</span>
+          <p class="sv-loc">Eternal — No Origin</p>
+          <h2 class="sv-name">Eternal</h2>
+          <p class="sv-desc">Purple and white flowers bloom on a moss bed against pure black — pristine, impossibly still. For moments that exist outside of time.</p>
+          <div class="sv-meta">
+            <div><span>Vessel</span><span>Round Bowl</span></div>
+            <div><span>Palette</span><span>Black · Purple · White</span></div>
+            <div><span>Theme</span><span>Floral · Preserved</span></div>
+          </div>
+          <div class="sv-cta">
+            <span class="sv-price">₱2,400</span>
+            <button class="btn btn--light btn--sm" onclick="addToCart('eternal','Eternal',2400)">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="series-item__content">
-      <span class="series-num">06</span>
-      <p class="series-location">Archipelago Series</p>
-      <h2 class="series-name">Miniscape</h2>
-      <p class="series-desc">Four small squat jars arranged like islands on a shelf — each holding a minimal rock-and-moss landscape. A desktop archipelago. The Philippines in miniature, spread across your workspace.</p>
-      <div class="series-meta">
-        <div class="series-detail">
-          <span class="series-detail__label">Vessel</span>
-          <span class="series-detail__val">Set of 4 Squat Jars</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Palette</span>
-          <span class="series-detail__val">Black · Stone · Moss</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Type</span>
-          <span class="series-detail__val">Collector Set</span>
-        </div>
-      </div>
-      <div class="series-cta">
-        <span class="series-price">₱4,200 <small>set of 4</small></span>
-        <button class="btn btn--light" onclick="addToCart('miniscape','Miniscape (Set of 4)',4200)">Add to Cart</button>
-      </div>
-    </div>
-  </article>
+    </section>
 
-  <!-- PRODUCT: MINI BLOOM -->
-  <article class="series-item" id="mini-bloom" data-index="6">
-    <div class="series-item__visual series-item__visual--left">
-      <div class="series-img-wrap">
-        <img src="images/mini-bloom.jpg" alt="Mini Bloom terrarium" class="series-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="series-img-fallback" style="background:linear-gradient(160deg,#c8b8a8,#b09888,#8a7060);display:none">
-          <div class="sfb-bloom"></div>
-          <div class="sfb-label">MINI BLOOM</div>
+    <!-- 06 MINISCAPE -->
+    <section class="sv-scene" data-idx="5">
+      <div class="sv-inner">
+        <div class="sv-visual">
+          <img src="images/miniscape.jpg" alt="Miniscape" class="sv-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.background='linear-gradient(160deg,#1a1a1a,#111,#080808)'" />
+          <div class="sv-img-fb"></div>
+        </div>
+        <div class="sv-overlay"></div>
+        <div class="sv-wm" aria-hidden="true">MINISCAPE</div>
+        <div class="sv-card">
+          <span class="sv-num">06</span>
+          <p class="sv-loc">Archipelago Series</p>
+          <h2 class="sv-name">Miniscape</h2>
+          <p class="sv-desc">Four small jars arranged like islands on a shelf — each a minimal rock-and-moss landscape. A desktop archipelago. The Philippines in miniature.</p>
+          <div class="sv-meta">
+            <div><span>Vessel</span><span>Set of 4 Squat Jars</span></div>
+            <div><span>Palette</span><span>Black · Stone · Moss</span></div>
+            <div><span>Type</span><span>Collector Set</span></div>
+          </div>
+          <div class="sv-cta">
+            <span class="sv-price">₱4,200 <small>set of 4</small></span>
+            <button class="btn btn--light btn--sm" onclick="addToCart('miniscape','Miniscape (Set of 4)',4200)">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="series-item__content">
-      <span class="series-num">07</span>
-      <p class="series-location">Garden Province, PH</p>
-      <h2 class="series-name">Mini Bloom</h2>
-      <p class="series-desc">A squat round jar bursting with dense white and purple flower blooms — compact enough to hold in one hand, generous enough to fill a room with life. The perfect gift for someone who deserves a little nature.</p>
-      <div class="series-meta">
-        <div class="series-detail">
-          <span class="series-detail__label">Vessel</span>
-          <span class="series-detail__val">Squat Round Jar</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Palette</span>
-          <span class="series-detail__val">Warm Gray · White · Lavender</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Best For</span>
-          <span class="series-detail__val">Gifting · Desk · Bedroom</span>
-        </div>
-      </div>
-      <div class="series-cta">
-        <span class="series-price">₱1,800</span>
-        <button class="btn btn--light" onclick="addToCart('mini-bloom','Mini Bloom',1800)">Add to Cart</button>
-      </div>
-    </div>
-  </article>
+    </section>
 
-  <!-- PRODUCT: TALON -->
-  <article class="series-item series-item--flip" id="talon" data-index="7">
-    <div class="series-item__visual series-item__visual--right">
-      <div class="series-img-wrap">
-        <img src="images/talon.jpg" alt="Talon terrarium" class="series-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="series-img-fallback" style="background:linear-gradient(160deg,#0d0d0d,#080808,#020202);display:none">
-          <div class="sfb-canyon"></div>
-          <div class="sfb-label">TALON</div>
+    <!-- 07 MINI BLOOM -->
+    <section class="sv-scene" data-idx="6">
+      <div class="sv-inner">
+        <div class="sv-visual">
+          <img src="images/mini-bloom.jpg" alt="Mini Bloom" class="sv-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.background='linear-gradient(160deg,#c8b8a8,#b09888,#8a7060)'" />
+          <div class="sv-img-fb"></div>
+        </div>
+        <div class="sv-overlay"></div>
+        <div class="sv-wm" aria-hidden="true">MINI BLOOM</div>
+        <div class="sv-card">
+          <span class="sv-num">07</span>
+          <p class="sv-loc">Garden Province, PH</p>
+          <h2 class="sv-name">Mini Bloom</h2>
+          <p class="sv-desc">A round jar bursting with dense white and purple blooms — compact enough to hold in one hand, generous enough to fill a room with life.</p>
+          <div class="sv-meta">
+            <div><span>Vessel</span><span>Squat Round Jar</span></div>
+            <div><span>Palette</span><span>Warm Gray · White · Lavender</span></div>
+            <div><span>Best For</span><span>Gifting · Desk · Bedroom</span></div>
+          </div>
+          <div class="sv-cta">
+            <span class="sv-price">₱1,800</span>
+            <button class="btn btn--light btn--sm" onclick="addToCart('mini-bloom','Mini Bloom',1800)">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="series-item__content">
-      <span class="series-num">08</span>
-      <p class="series-location">Mt. Apo, PH</p>
-      <h2 class="series-name">Talon</h2>
-      <p class="series-desc">A waterfall drops through a narrow canyon of dramatic rock formations, set inside tall rectangular glass against absolute black. Named for the eagle's talon — sharp, powerful, descended from the highest peak.</p>
-      <div class="series-meta">
-        <div class="series-detail">
-          <span class="series-detail__label">Vessel</span>
-          <span class="series-detail__val">Tall Rectangle</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Palette</span>
-          <span class="series-detail__val">Black · Slate · Cascading White</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Feature</span>
-          <span class="series-detail__val">Waterfall Rockscape</span>
-        </div>
-      </div>
-      <div class="series-cta">
-        <span class="series-price">₱3,800</span>
-        <button class="btn btn--light" onclick="addToCart('talon','Talon',3800)">Add to Cart</button>
-      </div>
-    </div>
-  </article>
+    </section>
 
-  <!-- PRODUCT: EL NIDO -->
-  <article class="series-item" id="el-nido" data-index="8">
-    <div class="series-item__visual series-item__visual--left">
-      <div class="series-img-wrap">
-        <img src="images/el-nido.jpg" alt="El Nido terrarium" class="series-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="series-img-fallback" style="background:linear-gradient(160deg,#0a0a0a,#050505,#000);display:none">
-          <div class="sfb-nido"></div>
-          <div class="sfb-label">EL NIDO</div>
+    <!-- 08 TALON -->
+    <section class="sv-scene" data-idx="7">
+      <div class="sv-inner">
+        <div class="sv-visual">
+          <img src="images/talon.jpg" alt="Talon" class="sv-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.background='linear-gradient(160deg,#0d0d0d,#080808,#020202)'" />
+          <div class="sv-img-fb"></div>
+        </div>
+        <div class="sv-overlay"></div>
+        <div class="sv-wm" aria-hidden="true">TALON</div>
+        <div class="sv-card">
+          <span class="sv-num">08</span>
+          <p class="sv-loc">Mt. Apo, PH</p>
+          <h2 class="sv-name">Talon</h2>
+          <p class="sv-desc">A waterfall drops through a narrow canyon of dramatic rock formations, set against absolute black. Named for the eagle's talon — sharp, powerful.</p>
+          <div class="sv-meta">
+            <div><span>Vessel</span><span>Tall Rectangle</span></div>
+            <div><span>Feature</span><span>Waterfall Rockscape</span></div>
+            <div><span>Palette</span><span>Black · Slate · White Cascade</span></div>
+          </div>
+          <div class="sv-cta">
+            <span class="sv-price">₱3,800</span>
+            <button class="btn btn--light btn--sm" onclick="addToCart('talon','Talon',3800)">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="series-item__content">
-      <span class="series-num">09</span>
-      <p class="series-location">El Nido, Palawan, PH</p>
-      <h2 class="series-name">El Nido</h2>
-      <p class="series-desc">Two towering rock formations rise against pure black to form a narrow canyon — the iconic cliffs of Palawan reimagined in miniature. Every detail carved to carry the silence between those ancient limestone walls.</p>
-      <div class="series-meta">
-        <div class="series-detail">
-          <span class="series-detail__label">Vessel</span>
-          <span class="series-detail__val">Tall Rectangle</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Palette</span>
-          <span class="series-detail__val">Black · Dark Limestone</span>
-        </div>
-        <div class="series-detail">
-          <span class="series-detail__label">Inspired by</span>
-          <span class="series-detail__val">Bacuit Bay, Palawan</span>
-        </div>
-      </div>
-      <div class="series-cta">
-        <span class="series-price">₱3,600</span>
-        <button class="btn btn--light" onclick="addToCart('el-nido','El Nido',3600)">Add to Cart</button>
-      </div>
-    </div>
-  </article>
+    </section>
 
-  <!-- SERIES CLOSING CTA -->
-  <section class="series-closing">
-    <div class="series-closing__inner">
+    <!-- 09 EL NIDO -->
+    <section class="sv-scene" data-idx="8">
+      <div class="sv-inner">
+        <div class="sv-visual">
+          <img src="images/el-nido.jpg" alt="El Nido" class="sv-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.background='linear-gradient(160deg,#0a0a0a,#050505,#000)'" />
+          <div class="sv-img-fb"></div>
+        </div>
+        <div class="sv-overlay"></div>
+        <div class="sv-wm" aria-hidden="true">EL NIDO</div>
+        <div class="sv-card">
+          <span class="sv-num">09</span>
+          <p class="sv-loc">El Nido, Palawan, PH</p>
+          <h2 class="sv-name">El Nido</h2>
+          <p class="sv-desc">Two towering rock formations rise against pure black — the iconic limestone cliffs of Palawan reimagined in miniature. The silence between ancient walls.</p>
+          <div class="sv-meta">
+            <div><span>Vessel</span><span>Tall Rectangle</span></div>
+            <div><span>Palette</span><span>Black · Dark Limestone</span></div>
+            <div><span>Inspired by</span><span>Bacuit Bay, Palawan</span></div>
+          </div>
+          <div class="sv-cta">
+            <span class="sv-price">₱3,600</span>
+            <button class="btn btn--light btn--sm" onclick="addToCart('el-nido','El Nido',3600)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /sv-track -->
+
+  <!-- ── CLOSING CTA ──────────────────────────────── -->
+  <section class="sv-closing">
+    <div class="sv-closing__inner">
       <p class="eyebrow eyebrow--light">Can't decide?</p>
       <h2>Build your own<br><em>landscape.</em></h2>
-      <p>Every Terrafinity piece begins with a conversation. Tell us your space, your story, your island — and we'll build something made only for you.</p>
-      <div class="series-closing__btns">
+      <p>Every piece begins with a conversation. Tell us your space, your story, your island — and we'll build something made only for you.</p>
+      <div class="sv-closing__btns">
         <a href="create.html" class="btn btn--light">Start Creating</a>
         <a href="workshops.html" class="btn btn--outline-light">Join a Workshop</a>
       </div>
@@ -377,28 +307,63 @@
 </main>
 
 <div id="site-footer"></div>
-
 <script src="js/components.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    initPage('series');
+document.addEventListener('DOMContentLoaded', () => {
+  initPage('series');
 
-    // Scroll-reveal for series items
-    if (window.IntersectionObserver) {
-      const items = document.querySelectorAll('.series-item');
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('series-item--visible');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.08 });
-      items.forEach(el => obs.observe(el));
-    } else {
-      document.querySelectorAll('.series-item').forEach(el => el.classList.add('series-item--visible'));
-    }
+  const scenes  = document.querySelectorAll('.sv-scene');
+  const spTrack = document.getElementById('spTrack');
+  const spLabel = document.getElementById('spLabel');
+  const total   = scenes.length;
+
+  /* Build progress dots */
+  scenes.forEach((scene, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'sp__dot';
+    dot.setAttribute('aria-label', `Go to product ${i + 1}`);
+    dot.addEventListener('click', () => {
+      scene.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    spTrack.appendChild(dot);
   });
+
+  const dots = spTrack.querySelectorAll('.sp__dot');
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  /* Smooth scale-on-center update */
+  function update() {
+    const vh       = window.innerHeight;
+    const vCenter  = vh / 2;
+    let   closest  = Infinity;
+    let   activeI  = 0;
+
+    scenes.forEach((scene, i) => {
+      const rect       = scene.getBoundingClientRect();
+      const sceneCenter = rect.top + rect.height / 2;
+      const dist        = Math.abs(sceneCenter - vCenter);
+      const maxDist     = vh * 0.8;
+      const t           = Math.max(0, 1 - dist / maxDist);
+
+      const scale   = 0.82 + 0.18 * t;
+      const opacity = 0.38 + 0.62 * t;
+
+      const inner = scene.querySelector('.sv-inner');
+      inner.style.transform = `scale(${scale.toFixed(4)})`;
+      inner.style.opacity   = opacity.toFixed(4);
+
+      if (dist < closest) { closest = dist; activeI = i; }
+    });
+
+    /* update dots + label */
+    dots.forEach((d, i) => d.classList.toggle('sp__dot--on', i === activeI));
+    if (spLabel) spLabel.textContent = `${pad(activeI + 1)} / ${pad(total)}`;
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+});
 </script>
 
 </body>

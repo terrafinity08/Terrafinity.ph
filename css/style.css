@@ -2991,3 +2991,302 @@ h5 { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform
   .product-card { flex: 0 0 220px; }
   .carousel-btn { width: 40px; height: 40px; }
 }
+
+/* ===================================================
+   SERIES v2 — full-screen immersive scroll
+=================================================== */
+
+/* Hero */
+.sv-hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, #0e1a0e 0%, #000 100%);
+  text-align: center;
+  padding: calc(var(--nav-h) + 40px) 24px 60px;
+  position: relative;
+}
+.sv-hero__h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4.5rem, 14vw, 9rem);
+  font-weight: 700;
+  color: #F5F5F2;
+  line-height: 1;
+  margin: 16px 0 20px;
+}
+.sv-hero__h em { color: #6E7F68; font-style: italic; }
+.sv-hero__sub {
+  font-size: 1rem;
+  color: rgba(245,245,242,.45);
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.sv-hero__down {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245,245,242,.25);
+  font-size: .72rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  animation: seriesBob 2.5s ease-in-out infinite;
+}
+
+/* Scenes track */
+.sv-track { background: #000; }
+
+/* Individual scene */
+.sv-scene {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Inner — this is what scales */
+.sv-inner {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+/* Full-bleed image */
+.sv-visual {
+  position: absolute;
+  inset: 0;
+}
+.sv-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.sv-img-fb {
+  position: absolute;
+  inset: 0;
+  background: #111;
+}
+
+/* Overlay gradient — darker on left for card readability */
+.sv-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.1) 100%),
+    linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 50%);
+  z-index: 1;
+}
+
+/* Giant watermark name */
+.sv-wm {
+  position: absolute;
+  bottom: -0.08em;
+  left: -0.01em;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(10vw, 16vw, 18vw);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.055);
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
+  user-select: none;
+}
+
+/* Glass info card */
+.sv-card {
+  position: absolute;
+  left: clamp(32px, 6vw, 88px);
+  bottom: clamp(48px, 8vh, 96px);
+  width: clamp(280px, 32vw, 400px);
+  background: rgba(10,10,10,0.55);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 20px;
+  padding: 28px 32px 32px;
+  box-shadow:
+    0 12px 48px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+  z-index: 10;
+  color: #F5F5F2;
+}
+.sv-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  border-radius: 1px;
+}
+.sv-num {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #6E7F68;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+.sv-loc {
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(245,245,242,.35);
+  margin: 0 0 10px;
+}
+.sv-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 700;
+  color: #F5F5F2;
+  margin: 0 0 14px;
+  line-height: 1.1;
+}
+.sv-desc {
+  font-size: .82rem;
+  line-height: 1.75;
+  color: rgba(245,245,242,.58);
+  margin: 0 0 20px;
+}
+.sv-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+}
+.sv-meta > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: .72rem;
+}
+.sv-meta > div span:first-child {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #6E7F68;
+  font-weight: 500;
+}
+.sv-meta > div span:last-child { color: rgba(245,245,242,.65); }
+.sv-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.sv-price {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #F5F5F2;
+  letter-spacing: -.02em;
+}
+.sv-price small {
+  font-size: .7rem;
+  font-weight: 400;
+  color: rgba(245,245,242,.4);
+  margin-left: 4px;
+}
+.btn--sm {
+  padding: 10px 22px;
+  font-size: .8rem;
+}
+
+/* Vertical progress dots */
+.sp {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 200;
+  pointer-events: none;
+}
+.sp__track {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: auto;
+}
+.sp__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all .3s ease;
+  display: block;
+}
+.sp__dot--on {
+  background: #F5F5F2;
+  transform: scale(1.8);
+}
+.sp__label {
+  font-size: .6rem;
+  letter-spacing: .18em;
+  color: rgba(245,245,242,.22);
+  margin-top: 14px;
+  writing-mode: vertical-rl;
+  pointer-events: none;
+}
+
+/* Closing CTA */
+.sv-closing {
+  text-align: center;
+  padding: 140px 24px;
+  background: linear-gradient(180deg, #000 0%, #060d06 100%);
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.sv-closing__inner { max-width: 560px; margin: 0 auto; }
+.sv-closing h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  color: #F5F5F2;
+  line-height: 1.1;
+  margin: 16px 0 24px;
+}
+.sv-closing h2 em { color: #6E7F68; font-style: italic; }
+.sv-closing p { color: rgba(245,245,242,.45); line-height: 1.7; margin: 0 0 48px; }
+.sv-closing__btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* Hide progress dots on series hero + footer */
+.sv-hero ~ * .sp,
+body:not(.series-page) .sp { display: none; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sv-card {
+    left: 24px;
+    right: 24px;
+    bottom: 32px;
+    width: auto;
+  }
+  .sv-wm { font-size: 22vw; }
+  .sp { right: 12px; }
+}
+@media (max-width: 600px) {
+  .sv-hero__h { font-size: 3.8rem; }
+  .sv-card { padding: 22px 22px 24px; }
+  .sv-name { font-size: 1.5rem; }
+  .sv-meta { gap: 6px; }
+  .sv-wm { font-size: 28vw; bottom: 30%; }
+  .sp { display: none; }
+  .sv-closing { padding: 80px 24px; }
+}

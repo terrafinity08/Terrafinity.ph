@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Terrafinity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="site-nav"></div>
+
+<main>
+
+  <!-- GALLERY HERO -->
+  <section class="gallery-hero">
+    <div class="gallery-hero__content">
+      <p class="eyebrow">Our Collection</p>
+      <h1>Every piece<br>is <em>alive.</em></h1>
+      <p>Handcrafted terrariums designed to bring nature into your everyday spaces. Browse the full collection below.</p>
+    </div>
+    <div class="gallery-hero__stats">
+      <div class="gallery-stat">
+        <strong>120+</strong>
+        <span>Pieces crafted</span>
+      </div>
+      <div class="gallery-stat">
+        <strong>12</strong>
+        <span>Signature styles</span>
+      </div>
+      <div class="gallery-stat">
+        <strong>98%</strong>
+        <span>Client satisfaction</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER TABS -->
+  <div class="gallery-filters-wrap">
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-filter="all" onclick="filterGallery('all', this)">All pieces</button>
+      <button class="filter-tab" data-filter="sphere" onclick="filterGallery('sphere', this)">Spheres</button>
+      <button class="filter-tab" data-filter="geo" onclick="filterGallery('geo', this)">Geometric</button>
+      <button class="filter-tab" data-filter="dome" onclick="filterGallery('dome', this)">Domes</button>
+      <button class="filter-tab" data-filter="jar" onclick="filterGallery('jar', this)">Jars</button>
+      <button class="filter-tab" data-filter="custom" onclick="filterGallery('custom', this)">Custom</button>
+    </div>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <section class="gallery-page">
+    <div class="gallery-grid" id="galleryGrid">
+
+      <!-- ITEM 1: Forest Sphere -->
+      <div class="gallery-item" data-category="sphere" onclick="openLightbox(0)">
+        <div class="gallery-item__visual">
+          <div class="gi-terrarium gi-sphere gi-forest">
+            <div class="gi-glass-sphere">
+              <div class="gi-base gi-base--forest"></div>
+              <div class="gi-plants gi-plants--forest">
+                <div class="gi-plant p1"></div>
+                <div class="gi-plant p2"></div>
+                <div class="gi-plant p3"></div>
+                <div class="gi-moss"></div>
+              </div>
+              <div class="gi-rock r1"></div>
+              <div class="gi-shine"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__tag gi-tag--bestseller">Bestseller</div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(1,'Forest Sphere',128)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Forest Sphere</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$128.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--easy"></span> Easy care
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 2: Moss Haven Geo -->
+      <div class="gallery-item gallery-item--tall" data-category="geo" onclick="openLightbox(1)">
+        <div class="gallery-item__visual">
+          <div class="gi-terrarium gi-geo gi-moss-style">
+            <div class="gi-glass-geo">
+              <div class="gi-base gi-base--moss"></div>
+              <div class="gi-plants gi-plants--moss">
+                <div class="gi-mosspad mp1"></div>
+                <div class="gi-mosspad mp2"></div>
+                <div class="gi-plant p-thin p1"></div>
+              </div>
+              <div class="gi-shine"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__tag gi-tag--new">New</div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(2,'Moss Haven',158)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Moss Haven</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$158.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--easy"></span> Easy care
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 3: Sanctuary Jar -->
+      <div class="gallery-item" data-category="jar" onclick="openLightbox(2)">
+        <div class="gallery-item__visual">
+          <div class="gi-terrarium gi-jar gi-forest">
+            <div class="gi-glass-jar">
+              <div class="gi-jar-lid"></div>
+              <div class="gi-base gi-base--forest"></div>
+              <div class="gi-plants gi-plants--fern">
+                <div class="gi-fern f1"></div>
+                <div class="gi-fern f2"></div>
+                <div class="gi-plant p-thin p1"></div>
+              </div>
+              <div class="gi-shine"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(3,'The Sanctuary',98)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">The Sanctuary</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$98.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--easy"></span> Easy care
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 4: Green Capsule Dome -->
+      <div class="gallery-item" data-category="dome" onclick="openLightbox(3)">
+        <div class="gallery-item__visual">
+          <div class="gi-terrarium gi-dome gi-zen">
+            <div class="gi-glass-dome">
+              <div class="gi-base gi-base--zen"></div>
+              <div class="gi-rock r2"></div>
+              <div class="gi-rock r3"></div>
+              <div class="gi-plant p-med p-zen"></div>
+              <div class="gi-shine"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(4,'Green Capsule',136)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Green Capsule</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$136.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--easy"></span> Easy care
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 5: Desert Dreams -->
+      <div class="gallery-item" data-category="sphere" onclick="openLightbox(4)">
+        <div class="gallery-item__visual">
+          <div class="gi-terrarium gi-sphere gi-desert">
+            <div class="gi-glass-sphere gi-glass--desert">
+              <div class="gi-base gi-base--desert"></div>
+              <div class="gi-plants gi-plants--desert">
+                <div class="gi-cactus c1"></div>
+                <div class="gi-cactus c2"></div>
+                <div class="gi-stone s1"></div>
+              </div>
+              <div class="gi-shine"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__tag gi-tag--easy">Low maintenance</div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(5,'Desert Dreams',118)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Desert Dreams</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$118.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--easy"></span> Very easy
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 6: Midnight Garden -->
+      <div class="gallery-item gallery-item--tall" data-category="sphere" onclick="openLightbox(5)">
+        <div class="gallery-item__visual gi-visual--dark">
+          <div class="gi-terrarium gi-sphere gi-night">
+            <div class="gi-glass-sphere gi-glass--night">
+              <div class="gi-base gi-base--night"></div>
+              <div class="gi-plants gi-plants--night">
+                <div class="gi-plant p1 pn1"></div>
+                <div class="gi-plant p2 pn2"></div>
+                <div class="gi-plant p3 pn3"></div>
+                <div class="gi-glow"></div>
+              </div>
+              <div class="gi-shine gi-shine--night"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__tag gi-tag--limited">Limited</div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(6,'Midnight Garden',188)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Midnight Garden</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$188.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--med"></span> Moderate
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 7: Tropical Paradise -->
+      <div class="gallery-item" data-category="dome" onclick="openLightbox(6)">
+        <div class="gallery-item__visual">
+          <div class="gi-terrarium gi-dome gi-tropical">
+            <div class="gi-glass-dome gi-glass--tropical">
+              <div class="gi-base gi-base--tropical"></div>
+              <div class="gi-plants gi-plants--tropical">
+                <div class="gi-leaf l1"></div>
+                <div class="gi-leaf l2"></div>
+                <div class="gi-plant p-tall pt1"></div>
+              </div>
+              <div class="gi-shine"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(7,'Tropical Paradise',142)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Tropical Paradise</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$142.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--med"></span> Moderate
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 8: Autumn Forest -->
+      <div class="gallery-item" data-category="sphere" onclick="openLightbox(7)">
+        <div class="gallery-item__visual">
+          <div class="gi-terrarium gi-sphere gi-autumn">
+            <div class="gi-glass-sphere gi-glass--autumn">
+              <div class="gi-base gi-base--autumn"></div>
+              <div class="gi-plants gi-plants--autumn">
+                <div class="gi-plant pa1"></div>
+                <div class="gi-plant pa2"></div>
+                <div class="gi-leaf-fall lf1"></div>
+                <div class="gi-leaf-fall lf2"></div>
+              </div>
+              <div class="gi-shine"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__tag gi-tag--seasonal">Seasonal</div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(8,'Autumn Forest',128)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Autumn Forest</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$128.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--easy"></span> Easy care
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 9: River Valley Geo -->
+      <div class="gallery-item" data-category="geo" onclick="openLightbox(8)">
+        <div class="gallery-item__visual">
+          <div class="gi-terrarium gi-geo gi-river">
+            <div class="gi-glass-geo gi-glass--river">
+              <div class="gi-base gi-base--river"></div>
+              <div class="gi-plants gi-plants--river">
+                <div class="gi-plant p-thin pr1"></div>
+                <div class="gi-plant p-thin pr2"></div>
+                <div class="gi-pebble pb1"></div>
+                <div class="gi-pebble pb2"></div>
+              </div>
+              <div class="gi-shine"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(9,'River Valley',155)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">River Valley</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$155.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--med"></span> Moderate
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 10: Zen Bowl -->
+      <div class="gallery-item" data-category="custom" onclick="openLightbox(9)">
+        <div class="gallery-item__visual">
+          <div class="gi-terrarium gi-bowl gi-zen-bowl">
+            <div class="gi-glass-bowl">
+              <div class="gi-base gi-base--sand"></div>
+              <div class="gi-sand-lines"></div>
+              <div class="gi-rock rz1"></div>
+              <div class="gi-rock rz2"></div>
+              <div class="gi-plant p-tiny pzt"></div>
+              <div class="gi-shine"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__tag gi-tag--easy">Low maintenance</div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(10,'Zen Bowl',89)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Zen Bowl</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$89.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--easy"></span> Very easy
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 11: Crystal Geo -->
+      <div class="gallery-item gallery-item--tall" data-category="geo" onclick="openLightbox(10)">
+        <div class="gallery-item__visual gi-visual--crystal">
+          <div class="gi-terrarium gi-geo gi-crystal">
+            <div class="gi-glass-geo gi-glass--crystal">
+              <div class="gi-base gi-base--crystal"></div>
+              <div class="gi-plants gi-plants--crystal">
+                <div class="gi-crystal-el cr1"></div>
+                <div class="gi-crystal-el cr2"></div>
+                <div class="gi-plant p-tiny pct"></div>
+              </div>
+              <div class="gi-shine gi-shine--crystal"></div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item__tag gi-tag--limited">Limited</div>
+        <div class="gallery-item__actions">
+          <button class="gallery-action-btn" onclick="event.stopPropagation();addToCart(11,'Crystal Cave',198)">Add to cart</button>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Crystal Cave</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">$198.00</p>
+            <div class="gallery-care">
+              <span class="care-dot care-dot--med"></span> Moderate
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 12: Custom Build -->
+      <div class="gallery-item gallery-item--custom-cta" data-category="custom" onclick="window.location.href='create.html'">
+        <div class="gallery-item__visual gallery-item__visual--cta">
+          <div class="cta-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="#6E7F68" stroke-width="1.3" stroke-dasharray="4 3"/><path d="M20 12v16M12 20h16" stroke="#6E7F68" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <p>Design your own</p>
+        </div>
+        <div class="gallery-item__body">
+          <p class="gallery-item__name">Custom Creation</p>
+          <div class="gallery-item__meta">
+            <p class="gallery-item__price">from $99</p>
+            <div class="gallery-care">
+              <span style="font-size:0.75rem;color:var(--moss)">→ Build it</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CREATE YOUR OWN CTA -->
+  <section class="gallery-cta">
+    <div class="gallery-cta__inner">
+      <p class="eyebrow">Can't find the right one?</p>
+      <h2>Design it yourself</h2>
+      <p>Use our step-by-step builder to create a terrarium that's exactly right for your space, style, and care level.</p>
+      <a href="create.html" class="btn btn--dark">Start building <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()"></div>
+<div class="lightbox-modal" id="lightboxModal">
+  <button class="lightbox-close" onclick="closeLightbox()">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 4l14 14M18 4L4 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+  <div class="lightbox-visual" id="lightboxVisual"></div>
+  <div class="lightbox-body">
+    <p class="eyebrow" id="lbCategory">Sphere</p>
+    <h2 id="lbName">Forest Sphere</h2>
+    <p id="lbDesc" style="color:#666;font-size:0.9rem;line-height:1.7;margin:12px 0 20px"></p>
+    <div class="care-indicator">
+      <span class="care-dot" id="lbCareDot"></span>
+      <span id="lbCareText">Easy care</span>
+      <span style="color:#ccc;margin:0 6px">·</span>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2c0 0-4 4-4 7a4 4 0 008 0c0-3-4-7-4-7z" stroke="#6E7F68" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <span id="lbWater">Water monthly</span>
+    </div>
+    <div class="lb-price-row">
+      <p class="lb-price" id="lbPrice">$128.00</p>
+      <p id="lbAvailability" style="font-size:0.8rem;color:var(--moss)">In stock · Ships 2–4 weeks</p>
+    </div>
+    <div class="lb-actions">
+      <button class="btn btn--dark btn--full" id="lbAddCart">Add to cart</button>
+      <a href="create.html" class="btn btn--outline btn--full">Customise this style</a>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="js/components.js"></script>
+<script>
+  initPage('gallery');
+
+  const galleryData = [
+    { name: 'Forest Sphere', category: 'Sphere', price: 128, id: 1, care: 'easy', water: 'Monthly', desc: 'A serene closed ecosystem in hand-blown borosilicate glass. Dark emerald moss carpets the base while slender ferns reach upward. A self-sustaining micro-world that thrives on almost no maintenance.' },
+    { name: 'Moss Haven', category: 'Geometric', price: 158, id: 2, care: 'easy', water: 'Monthly', desc: 'Our geometric geo-prism design in clear optical glass. Densely planted with cushion moss and a single sculptural fern. The hexagonal shape casts beautiful prismatic light.' },
+    { name: 'The Sanctuary', category: 'Jar', price: 98, id: 3, care: 'easy', water: 'Monthly', desc: 'An apothecary-style glass jar with cork lid. Planted with delicate ferns and soft moss. Vintage-inspired with a timeless quality — at home in any setting.' },
+    { name: 'Green Capsule', category: 'Dome', price: 136, id: 4, care: 'easy', water: 'Rarely', desc: 'An elegant bell-jar dome on a natural wood base. Zen-inspired arrangement of stones, sand, and a single sculptural plant. Meditative and minimal.' },
+    { name: 'Desert Dreams', category: 'Sphere', price: 118, id: 5, care: 'easy', water: 'Every 6 weeks', desc: 'A desert landscape in a glass sphere. Hand-selected cacti, smooth pebbles, and pale sand. Virtually indestructible — perfect for busy people or frequent travellers.' },
+    { name: 'Midnight Garden', category: 'Sphere', price: 188, id: 6, care: 'moderate', water: 'Bi-weekly', desc: 'Our dramatic dark-glass edition. Deep forest plants glow against the smoked glass. Comes with a warm LED base that transforms it at night. A collector\'s piece.' },
+    { name: 'Tropical Paradise', category: 'Dome', price: 142, id: 7, care: 'moderate', water: 'Bi-weekly', desc: 'Lush tropical plants under a glass dome — bold, broad leaves and vibrant greens. Inspired by rainforest undergrowth, this one makes a statement.' },
+    { name: 'Autumn Forest', category: 'Sphere', price: 128, id: 8, care: 'easy', water: 'Monthly', desc: 'Warm amber and rust tones using seasonal plants and preserved autumn leaves. A limited seasonal piece that captures the feeling of a forest floor in October.' },
+    { name: 'River Valley', category: 'Geometric', price: 155, id: 9, care: 'moderate', water: 'Bi-weekly', desc: 'A geo-prism with a flowing blue-toned base to suggest water. Paired with fine-leafed aquatic plants and polished river pebbles. Calming and beautifully unconventional.' },
+    { name: 'Zen Bowl', category: 'Custom', price: 89, id: 10, care: 'easy', water: 'Rarely', desc: 'A shallow open bowl inspired by Japanese sand gardens. Raked sand patterns, smooth river stones, and one or two minimalist plants. Meditative to look at.' },
+    { name: 'Crystal Cave', category: 'Geometric', price: 198, id: 11, care: 'moderate', water: 'Monthly', desc: 'Amethyst-toned crystal formations combined with moss and dark soil in a geometric vessel. Rare minerals sourced ethically, making each one completely unique.' },
+  ];
+
+  function filterGallery(category, btn) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const cat = item.dataset.category;
+      const show = category === 'all' || cat === category;
+      item.style.display = show ? '' : 'none';
+      if (show) {
+        item.style.animation = 'none';
+        item.offsetHeight; // reflow
+        item.style.animation = 'fadeUp 0.4s ease forwards';
+      }
+    });
+  }
+
+  function openLightbox(index) {
+    const item = galleryData[index];
+    if (!item) return;
+    document.getElementById('lbName').textContent = item.name;
+    document.getElementById('lbCategory').textContent = item.category;
+    document.getElementById('lbDesc').textContent = item.desc;
+    document.getElementById('lbPrice').textContent = `$${item.price}.00`;
+    const careDot = document.getElementById('lbCareDot');
+    const careText = document.getElementById('lbCareText');
+    careDot.className = `care-dot care-dot--${item.care}`;
+    careText.textContent = item.care === 'easy' ? 'Easy care' : 'Moderate care';
+    document.getElementById('lbWater').textContent = `Water ${item.water.toLowerCase()}`;
+    const addBtn = document.getElementById('lbAddCart');
+    addBtn.onclick = () => { addToCart(item.id, item.name, item.price); closeLightbox(); };
+
+    // Mirror the gallery item visual into lightbox
+    const gridItem = document.querySelectorAll('.gallery-item')[index];
+    const visual = gridItem?.querySelector('.gallery-item__visual');
+    const lbVisual = document.getElementById('lightboxVisual');
+    if (visual) {
+      lbVisual.innerHTML = visual.innerHTML;
+      // Scale up the terrarium
+      const terr = lbVisual.querySelector('.gi-terrarium');
+      if (terr) terr.style.transform = 'scale(1.5)';
+    }
+
+    document.getElementById('lightboxOverlay').classList.add('open');
+    document.getElementById('lightboxModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightboxOverlay').classList.remove('open');
+    document.getElementById('lightboxModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Keyboard close
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>

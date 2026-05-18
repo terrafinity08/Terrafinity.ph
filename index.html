@@ -11,478 +11,297 @@
 </head>
 <body>
 
-  <!-- NAV -->
-  <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="#" class="nav__logo">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 14C4 14 6 8 14 6C22 4 24 10 20 14C16 18 10 16 8 20C6 24 10 26 14 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M14 6C14 6 12 10 14 14C16 18 20 18 20 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M8 10C8 10 10 11 12 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M18 8C18 8 17 11 16 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <span>Terrafinity</span>
-      </a>
+<div id="site-nav"></div>
 
-      <nav class="nav__links">
-        <div class="nav__item nav__item--dropdown">
-          <a href="#shop">Shop <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <div class="nav__dropdown">
-            <a href="#shop">All Terrariums</a>
-            <a href="#shop">Best Sellers</a>
-            <a href="#shop">New Arrivals</a>
-            <a href="#shop">Accessories</a>
-            <a href="#shop">Gift Cards</a>
-          </div>
-        </div>
-        <a href="#builder">Create Your Own</a>
-        <a href="#workshops">Workshops</a>
-        <a href="#about">About</a>
-        <a href="#journal">Journal</a>
-      </nav>
-
-      <div class="nav__actions">
-        <button class="nav__icon" aria-label="Search" id="searchToggle">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M11.5 11.5L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <button class="nav__icon" aria-label="Account">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 16c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <button class="nav__icon nav__cart" aria-label="Cart" id="cartToggle">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 2h2l2.4 9.6A1 1 0 007.36 13h7.28a1 1 0 00.96-.72L17 6H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="16" r="1" fill="currentColor"/><circle cx="14" cy="16" r="1" fill="currentColor"/></svg>
-          <span class="nav__cart-count" id="cartCount">0</span>
-        </button>
-        <a href="#contact" class="btn btn--dark btn--sm">Book a consultation <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__left">
+      <p class="eyebrow">Nature, Simplified.</p>
+      <h1>Terrariums designed for <em>calm</em> and <em>clarity.</em></h1>
+      <p class="hero__sub">Living landscapes that bring balance<br>to your space and your mind.</p>
+      <div class="hero__ctas">
+        <a href="#shop" class="btn btn--dark">Shop terrariums <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="create.html" class="btn btn--outline">Create your own <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5 2 3 5 4 8c1 3 5 4 7 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.2"/></svg></a>
       </div>
-
-      <button class="nav__hamburger" id="menuToggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <!-- Search bar -->
-    <div class="nav__search" id="searchBar">
-      <input type="text" placeholder="Search terrariums, plants, accessories…" />
-      <button>Search</button>
-    </div>
-
-    <!-- Mobile menu -->
-    <div class="nav__mobile" id="mobileMenu">
-      <a href="#shop">Shop</a>
-      <a href="#builder">Create Your Own</a>
-      <a href="#workshops">Workshops</a>
-      <a href="#about">About</a>
-      <a href="#journal">Journal</a>
-      <a href="#contact" class="btn btn--dark" style="margin-top:1rem;">Book a consultation</a>
-    </div>
-  </header>
-
-  <!-- CART DRAWER -->
-  <div class="cart-overlay" id="cartOverlay"></div>
-  <aside class="cart-drawer" id="cartDrawer">
-    <div class="cart-drawer__header">
-      <h3>Your Cart</h3>
-      <button id="cartClose">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </button>
-    </div>
-    <div class="cart-drawer__body" id="cartBody">
-      <div class="cart-empty">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#CFCFC8" stroke-width="1.5"/><path d="M16 16l16 16M32 16L16 32" stroke="#CFCFC8" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <p>Your cart is empty</p>
-        <a href="#shop" class="btn btn--dark btn--sm" onclick="closeCart()">Shop terrariums</a>
+      <p class="hero__trust">Trusted by design-forward brands</p>
+      <div class="hero__logos">
+        <span>IPSUM</span>
+        <span>logoipsum</span>
+        <span>LOGO</span>
+        <span>LOGOIPSUM</span>
       </div>
     </div>
-    <div class="cart-drawer__footer" id="cartFooter" style="display:none">
-      <div class="cart-subtotal">
-        <span>Subtotal</span>
-        <span id="cartSubtotal">$0.00</span>
-      </div>
-      <p class="cart-note">Free shipping on orders over $100</p>
-      <button class="btn btn--dark btn--full">Checkout</button>
-    </div>
-  </aside>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero__left">
-        <p class="eyebrow">Nature, Simplified.</p>
-        <h1>Terrariums designed for <em>calm</em> and <em>clarity.</em></h1>
-        <p class="hero__sub">Living landscapes that bring balance<br>to your space and your mind.</p>
-        <div class="hero__ctas">
-          <a href="#shop" class="btn btn--dark">Shop terrariums <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a href="#builder" class="btn btn--outline">Create your own <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5 2 3 5 4 8c1 3 5 4 7 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.2"/></svg></a>
-        </div>
-        <p class="hero__trust">Trusted by design-forward brands</p>
-        <div class="hero__logos">
-          <span>IPSUM</span>
-          <span>logoipsum</span>
-          <span>LOGO</span>
-          <span>LOGOIPSUM</span>
-        </div>
-      </div>
-      <div class="hero__right">
-        <div class="hero__img-wrap">
-          <div class="hero__terrarium">
-            <div class="terrarium-globe">
-              <div class="terrarium-inner">
-                <div class="t-moss t-moss--1"></div>
-                <div class="t-moss t-moss--2"></div>
-                <div class="t-rock"></div>
-                <div class="t-plant t-plant--1"></div>
-                <div class="t-plant t-plant--2"></div>
-                <div class="t-plant t-plant--3"></div>
-              </div>
+    <div class="hero__right">
+      <div class="hero__img-wrap">
+        <div class="hero__terrarium">
+          <div class="terrarium-globe">
+            <div class="terrarium-inner">
+              <div class="t-moss t-moss--1"></div>
+              <div class="t-moss t-moss--2"></div>
+              <div class="t-rock"></div>
+              <div class="t-plant t-plant--1"></div>
+              <div class="t-plant t-plant--2"></div>
+              <div class="t-plant t-plant--3"></div>
             </div>
           </div>
-          <div class="hero__badge">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5 2 3 5 4 8c1 3 5 4 7 2" stroke="#6E7F68" stroke-width="1.2" stroke-linecap="round"/><circle cx="8" cy="8" r="2" stroke="#6E7F68" stroke-width="1.2"/></svg>
-            Handcrafted<br>living design
-          </div>
+        </div>
+        <div class="hero__badge">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5 2 3 5 4 8c1 3 5 4 7 2" stroke="#6E7F68" stroke-width="1.2" stroke-linecap="round"/><circle cx="8" cy="8" r="2" stroke="#6E7F68" stroke-width="1.2"/></svg>
+          Handcrafted<br>living design
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FEATURES BAR -->
-    <section class="features">
-      <div class="features__inner">
-        <div class="feature">
-          <div class="feature__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3C8 3 5 7 6 11c1 4 6 6 9 3" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/><path d="M12 21V11" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/></svg>
-          </div>
-          <div>
-            <strong>Natural &amp; Timeless</strong>
-            <p>Designed to last, styled by nature.</p>
-          </div>
+  <!-- FEATURES BAR -->
+  <section class="features">
+    <div class="features__inner">
+      <div class="feature">
+        <div class="feature__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3C8 3 5 7 6 11c1 4 6 6 9 3" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/><path d="M12 21V11" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/></svg>
         </div>
-        <div class="feature">
-          <div class="feature__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="8" rx="4" ry="2" stroke="#6E7F68" stroke-width="1.3"/><ellipse cx="12" cy="12" rx="6" ry="3" stroke="#6E7F68" stroke-width="1.3"/><ellipse cx="12" cy="16" rx="4" ry="2" stroke="#6E7F68" stroke-width="1.3"/></svg>
-          </div>
-          <div>
-            <strong>Low Maintenance</strong>
-            <p>Self-sustaining ecosystems that thrive.</p>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L5 19M17 17l2 2M12 3v4M4.5 7.5l3 3M19.5 7.5l-3 3" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/><circle cx="12" cy="14" r="5" stroke="#6E7F68" stroke-width="1.3"/></svg>
-          </div>
-          <div>
-            <strong>Sustainable</strong>
-            <p>Ethical materials. Minimal impact.</p>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#6E7F68" stroke-width="1.3"/><circle cx="12" cy="12" r="3" stroke="#6E7F68" stroke-width="1.3"/></svg>
-          </div>
-          <div>
-            <strong>Mindful Living</strong>
-            <p>Encouraging calm, focus &amp; well-being.</p>
-          </div>
+        <div>
+          <strong>Natural &amp; Timeless</strong>
+          <p>Designed to last, styled by nature.</p>
         </div>
       </div>
-    </section>
-
-    <!-- SHOP -->
-    <section class="shop" id="shop">
-      <div class="section-header">
-        <h2>Shop curated terrariums</h2>
-        <a href="#shop" class="link-arrow">View all products <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="feature">
+        <div class="feature__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="8" rx="4" ry="2" stroke="#6E7F68" stroke-width="1.3"/><ellipse cx="12" cy="12" rx="6" ry="3" stroke="#6E7F68" stroke-width="1.3"/><ellipse cx="12" cy="16" rx="4" ry="2" stroke="#6E7F68" stroke-width="1.3"/></svg>
+        </div>
+        <div>
+          <strong>Low Maintenance</strong>
+          <p>Self-sustaining ecosystems that thrive.</p>
+        </div>
       </div>
-
-      <div class="products" id="productsGrid">
-        <!-- Products injected by JS -->
+      <div class="feature">
+        <div class="feature__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 17L5 19M17 17l2 2M12 3v4M4.5 7.5l3 3M19.5 7.5l-3 3" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/><circle cx="12" cy="14" r="5" stroke="#6E7F68" stroke-width="1.3"/></svg>
+        </div>
+        <div>
+          <strong>Sustainable</strong>
+          <p>Ethical materials. Minimal impact.</p>
+        </div>
       </div>
-    </section>
-
-    <!-- BUILDER CTA -->
-    <section class="builder-cta" id="builder">
-      <div class="builder-cta__left">
-        <p class="eyebrow">Bespoke Terrariums</p>
-        <h2>Create<br>your own <em>terrarium</em></h2>
-        <p>Design a living landscape that's uniquely yours.</p>
-        <button class="btn btn--dark" id="startBuilder">Start creating <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="feature">
+        <div class="feature__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#6E7F68" stroke-width="1.3"/><circle cx="12" cy="12" r="3" stroke="#6E7F68" stroke-width="1.3"/></svg>
+        </div>
+        <div>
+          <strong>Mindful Living</strong>
+          <p>Encouraging calm, focus &amp; well-being.</p>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="builder-cta__right">
-        <div class="builder-widget" id="builderWidget">
-          <div class="builder-steps">
-            <div class="builder-step active" data-step="0">1. Glass</div>
-            <div class="builder-step" data-step="1">2. Landscape</div>
-            <div class="builder-step" data-step="2">3. Plants</div>
-            <div class="builder-step" data-step="3">4. Finishing Touches</div>
-            <div class="builder-step" data-step="4">5. Review</div>
+  <!-- SHOP -->
+  <section class="shop" id="shop">
+    <div class="section-header">
+      <h2>Shop curated terrariums</h2>
+      <a href="gallery.html" class="link-arrow">View all products <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="products" id="productsGrid"></div>
+  </section>
+
+  <!-- BUILDER CTA -->
+  <section class="builder-cta" id="builder">
+    <div class="builder-cta__left">
+      <p class="eyebrow">Bespoke Terrariums</p>
+      <h2>Create<br>your own <em>terrarium</em></h2>
+      <p>Design a living landscape that's uniquely yours.</p>
+      <a href="create.html" class="btn btn--dark">Start creating <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="builder-cta__right">
+      <div class="builder-widget" id="builderWidget">
+        <div class="builder-steps">
+          <div class="builder-step active" data-step="0">1. Glass</div>
+          <div class="builder-step" data-step="1">2. Landscape</div>
+          <div class="builder-step" data-step="2">3. Plants</div>
+          <div class="builder-step" data-step="3">4. Finishing Touches</div>
+          <div class="builder-step" data-step="4">5. Review</div>
+        </div>
+        <div class="builder-content" id="builderContent">
+          <!-- Step 0: Glass -->
+          <div class="builder-panel active" data-panel="0">
+            <p class="builder-label">Choose your glass shape</p>
+            <div class="builder-options">
+              <div class="builder-opt selected" data-value="Sphere"><div class="opt-shape opt-sphere"></div><span>Sphere</span></div>
+              <div class="builder-opt" data-value="Cylinder"><div class="opt-shape opt-cylinder"></div><span>Cylinder</span></div>
+              <div class="builder-opt" data-value="Teardrop"><div class="opt-shape opt-teardrop"></div><span>Teardrop</span></div>
+              <div class="builder-opt" data-value="Geo Prism"><div class="opt-shape opt-prism"></div><span>Geo Prism</span></div>
+              <div class="builder-opt" data-value="Bowl"><div class="opt-shape opt-bowl"></div><span>Bowl</span></div>
+            </div>
           </div>
-
-          <div class="builder-content" id="builderContent">
-            <!-- Step 0: Glass -->
-            <div class="builder-panel active" data-panel="0">
-              <p class="builder-label">Choose your glass shape</p>
-              <div class="builder-options">
-                <div class="builder-opt selected" data-value="Sphere">
-                  <div class="opt-shape opt-sphere"></div>
-                  <span>Sphere</span>
+          <!-- Step 1: Landscape -->
+          <div class="builder-panel" data-panel="1">
+            <p class="builder-label">Choose your landscape style</p>
+            <div class="builder-options builder-options--list">
+              <div class="builder-opt-list selected" data-value="Forest Style">Forest Style</div>
+              <div class="builder-opt-list" data-value="Desert Style">Desert Style</div>
+              <div class="builder-opt-list" data-value="Tropical Style">Tropical Style</div>
+              <div class="builder-opt-list" data-value="Zen Minimal">Zen Minimal</div>
+            </div>
+          </div>
+          <!-- Step 2: Plants -->
+          <div class="builder-panel" data-panel="2">
+            <p class="builder-label">Choose your plant palette</p>
+            <div class="builder-options builder-options--list">
+              <div class="builder-opt-list selected" data-value="Lush Green Plants">Lush Green Plants</div>
+              <div class="builder-opt-list" data-value="Moss &amp; Fern Mix">Moss &amp; Fern Mix</div>
+              <div class="builder-opt-list" data-value="Succulents">Succulents</div>
+              <div class="builder-opt-list" data-value="Air Plants">Air Plants</div>
+            </div>
+          </div>
+          <!-- Step 3: Finishing -->
+          <div class="builder-panel" data-panel="3">
+            <p class="builder-label">Add finishing touches</p>
+            <div class="builder-options builder-options--list">
+              <div class="builder-opt-list" data-value="Driftwood">+ Driftwood (+$12)</div>
+              <div class="builder-opt-list" data-value="River Stones">+ River Stones (+$8)</div>
+              <div class="builder-opt-list" data-value="Figurine">+ Figurine (+$15)</div>
+              <div class="builder-opt-list" data-value="LED Base">+ LED Base (+$25)</div>
+            </div>
+          </div>
+          <!-- Step 4: Review -->
+          <div class="builder-panel" data-panel="4">
+            <div class="builder-summary">
+              <div class="builder-summary__preview">
+                <div class="mini-terrarium"><div class="mini-globe"></div></div>
+              </div>
+              <div class="builder-summary__details">
+                <p class="builder-summary__label">Your terrarium summary</p>
+                <ul id="summaryList"></ul>
+                <div class="builder-summary__price">
+                  <span>Estimated price</span>
+                  <strong id="summaryPrice">$149.00</strong>
                 </div>
-                <div class="builder-opt" data-value="Cylinder">
-                  <div class="opt-shape opt-cylinder"></div>
-                  <span>Cylinder</span>
-                </div>
-                <div class="builder-opt" data-value="Teardrop">
-                  <div class="opt-shape opt-teardrop"></div>
-                  <span>Teardrop</span>
-                </div>
-                <div class="builder-opt" data-value="Geo Prism">
-                  <div class="opt-shape opt-prism"></div>
-                  <span>Geo Prism</span>
-                </div>
-                <div class="builder-opt" data-value="Bowl">
-                  <div class="opt-shape opt-bowl"></div>
-                  <span>Bowl</span>
-                </div>
+                <button class="btn btn--dark btn--full" id="addToCartBuilder">Add to cart</button>
+                <p class="builder-summary__note">Free shipping · 2–4 weeks</p>
               </div>
-            </div>
-
-            <!-- Step 1: Landscape -->
-            <div class="builder-panel" data-panel="1">
-              <p class="builder-label">Choose your landscape style</p>
-              <div class="builder-options builder-options--list">
-                <div class="builder-opt-list selected" data-value="Forest Style">Forest Style</div>
-                <div class="builder-opt-list" data-value="Desert Style">Desert Style</div>
-                <div class="builder-opt-list" data-value="Tropical Style">Tropical Style</div>
-                <div class="builder-opt-list" data-value="Zen Minimal">Zen Minimal</div>
-              </div>
-            </div>
-
-            <!-- Step 2: Plants -->
-            <div class="builder-panel" data-panel="2">
-              <p class="builder-label">Choose your plant palette</p>
-              <div class="builder-options builder-options--list">
-                <div class="builder-opt-list selected" data-value="Lush Green Plants">Lush Green Plants</div>
-                <div class="builder-opt-list" data-value="Moss &amp; Fern Mix">Moss &amp; Fern Mix</div>
-                <div class="builder-opt-list" data-value="Succulents">Succulents</div>
-                <div class="builder-opt-list" data-value="Air Plants">Air Plants</div>
-              </div>
-            </div>
-
-            <!-- Step 3: Finishing -->
-            <div class="builder-panel" data-panel="3">
-              <p class="builder-label">Add finishing touches</p>
-              <div class="builder-options builder-options--list">
-                <div class="builder-opt-list" data-value="Driftwood">+ Driftwood (+$12)</div>
-                <div class="builder-opt-list" data-value="River Stones">+ River Stones (+$8)</div>
-                <div class="builder-opt-list" data-value="Figurine">+ Figurine (+$15)</div>
-                <div class="builder-opt-list" data-value="LED Base">+ LED Base (+$25)</div>
-              </div>
-            </div>
-
-            <!-- Step 4: Review -->
-            <div class="builder-panel" data-panel="4">
-              <div class="builder-summary">
-                <div class="builder-summary__preview">
-                  <div class="mini-terrarium">
-                    <div class="mini-globe"></div>
-                  </div>
-                </div>
-                <div class="builder-summary__details">
-                  <p class="builder-summary__label">Your terrarium summary</p>
-                  <ul id="summaryList"></ul>
-                  <div class="builder-summary__price">
-                    <span>Estimated price</span>
-                    <strong id="summaryPrice">$149.00</strong>
-                  </div>
-                  <button class="btn btn--dark btn--full" id="addToCartBuilder">Add to cart</button>
-                  <p class="builder-summary__note">Free shipping · 2–4 weeks</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="builder-nav">
-            <button class="btn btn--ghost btn--sm" id="builderPrev" style="display:none">Back</button>
-            <button class="btn btn--dark btn--sm" id="builderNext">Next</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORKSHOPS -->
-    <section class="workshops" id="workshops">
-      <div class="workshops__left">
-        <p class="eyebrow">Workshops</p>
-        <h2>Hands-on.<br>Mindful.<br>Unforgettable.</h2>
-        <p>Join our terrarium workshops and create your own living landscape in a relaxed, inspiring environment.</p>
-        <a href="#workshops" class="btn btn--outline">Explore workshops <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
-      <div class="workshops__right">
-        <div class="workshop-cards">
-          <div class="workshop-card">
-            <div class="workshop-card__img workshop-card__img--1">
-              <div class="workshop-scene">
-                <div class="ws-table"></div>
-                <div class="ws-person ws-person--1"></div>
-                <div class="ws-person ws-person--2"></div>
-                <div class="ws-terrarium"></div>
-              </div>
-            </div>
-            <div class="workshop-card__body">
-              <h4>Terrarium Basics</h4>
-              <div class="workshop-meta">
-                <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> 2.5 hours</span>
-                <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M5 7h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> Beginner friendly</span>
-              </div>
-              <p class="workshop-price">$85.00 <span>/ person</span></p>
-              <button class="btn btn--dark btn--sm" onclick="addWorkshop('Terrarium Basics', 85)">Book now</button>
-            </div>
-          </div>
-          <div class="workshop-card">
-            <div class="workshop-card__img workshop-card__img--2">
-              <div class="workshop-scene">
-                <div class="ws-table"></div>
-                <div class="ws-person ws-person--3"></div>
-                <div class="ws-person ws-person--4"></div>
-                <div class="ws-terrarium ws-terrarium--2"></div>
-              </div>
-            </div>
-            <div class="workshop-card__body">
-              <h4>Advanced Design</h4>
-              <div class="workshop-meta">
-                <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> 3 hours</span>
-                <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M5 7h4M7 5v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> Intermediate</span>
-              </div>
-              <p class="workshop-price">$125.00 <span>/ person</span></p>
-              <button class="btn btn--dark btn--sm" onclick="addWorkshop('Advanced Design Workshop', 125)">Book now</button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- JOURNAL TEASER -->
-    <section class="journal" id="journal">
-      <div class="section-header">
-        <h2>From the journal</h2>
-        <a href="#journal" class="link-arrow">View all <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
-      <div class="journal-grid">
-        <article class="journal-card journal-card--lg">
-          <div class="journal-card__img journal-card__img--1"></div>
-          <div class="journal-card__body">
-            <span class="journal-tag">Care Guide</span>
-            <h3>How to keep your closed terrarium thriving for years</h3>
-            <p>A closed terrarium is a self-sustaining ecosystem — here's how to set it up for long-term success.</p>
-            <a href="#journal" class="link-arrow small">Read more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </article>
-        <article class="journal-card">
-          <div class="journal-card__img journal-card__img--2"></div>
-          <div class="journal-card__body">
-            <span class="journal-tag">Inspiration</span>
-            <h3>5 ways terrariums transform your workspace</h3>
-            <a href="#journal" class="link-arrow small">Read more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </article>
-        <article class="journal-card">
-          <div class="journal-card__img journal-card__img--3"></div>
-          <div class="journal-card__body">
-            <span class="journal-tag">Sustainability</span>
-            <h3>Our commitment to ethical sourcing</h3>
-            <a href="#journal" class="link-arrow small">Read more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- TRUST BAR -->
-    <div class="trust-bar">
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="11" width="16" height="8" rx="2" stroke="#6E7F68" stroke-width="1.3"/><path d="M7 11V7a4 4 0 018 0v4" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/></svg>
-        <div><strong>Free shipping</strong><p>On orders over $100</p></div>
-      </div>
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6l7-3z" stroke="#6E7F68" stroke-width="1.3" stroke-linejoin="round"/></svg>
-        <div><strong>Secure packaging</strong><p>Plants arrive safe &amp; sound</p></div>
-      </div>
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#6E7F68" stroke-width="1.3"/><path d="M8 11l2 2 4-4" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div><strong>Made to order</strong><p>Crafted with care</p></div>
-      </div>
-      <div class="trust-item">
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 10h10M4 14h6" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/><path d="M17 14l2 2-2 2" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div><strong>Support</strong><p>We're here to help</p></div>
-      </div>
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer" id="contact">
-    <div class="footer__top">
-      <div class="footer__brand">
-        <a href="#" class="nav__logo footer__logo">
-          <svg width="24" height="24" viewBox="0 0 28 28" fill="none"><path d="M4 14C4 14 6 8 14 6C22 4 24 10 20 14C16 18 10 16 8 20C6 24 10 26 14 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 6C14 6 12 10 14 14C16 18 20 18 20 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span>Terrafinity</span>
-        </a>
-        <p>Modern terrariums for calmer spaces and a more mindful life.</p>
-        <div class="footer__social">
-          <a href="#" aria-label="Instagram">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="4" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="13" cy="5" r="1" fill="currentColor"/></svg>
-          </a>
-          <a href="#" aria-label="Pinterest">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M6.5 15.5c.5-2 1-4.5 1-4.5s-.5-1 0-2 1.5-2 2.5-2 1.5 1 1.5 2-1 3-1 3 .5 1 1.5 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-          </a>
-          <a href="#" aria-label="TikTok">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 3c0 2 1.5 3 3 3v3c-1.5 0-3-.5-4-1.5V13a4 4 0 11-4-4V12a1 1 0 100 2 1 1 0 000-2V3h5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
+        <div class="builder-nav">
+          <button class="btn btn--ghost btn--sm" id="builderPrev" style="display:none">Back</button>
+          <button class="btn btn--dark btn--sm" id="builderNext">Next</button>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="footer__col">
-        <h5>Shop</h5>
-        <a href="#shop">All Terrariums</a>
-        <a href="#shop">Best Sellers</a>
-        <a href="#shop">New Arrivals</a>
-        <a href="#shop">Accessories</a>
-        <a href="#shop">Gift Cards</a>
-      </div>
-      <div class="footer__col">
-        <h5>Company</h5>
-        <a href="#about">About Us</a>
-        <a href="#about">Sustainability</a>
-        <a href="#about">Our Process</a>
-        <a href="#about">Care Guide</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer__col">
-        <h5>Resources</h5>
-        <a href="#workshops">Workshops</a>
-        <a href="#journal">Journal</a>
-        <a href="#">FAQ</a>
-        <a href="#">Shipping &amp; Returns</a>
-        <a href="#">Privacy Policy</a>
-      </div>
-      <div class="footer__col footer__newsletter">
-        <h5>Stay inspired</h5>
-        <p>Sign up for plant care tips, new arrivals, and mindful living.</p>
-        <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
-          <input type="email" placeholder="Enter your email" required />
-          <button type="submit" aria-label="Subscribe">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </form>
+  <!-- WORKSHOPS TEASER -->
+  <section class="workshops" id="workshops">
+    <div class="workshops__left">
+      <p class="eyebrow">Workshops</p>
+      <h2>Hands-on.<br>Mindful.<br>Unforgettable.</h2>
+      <p>Join our terrarium workshops and create your own living landscape in a relaxed, inspiring environment.</p>
+      <a href="workshops.html" class="btn btn--outline">Explore workshops <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="workshops__right">
+      <div class="workshop-cards">
+        <div class="workshop-card">
+          <div class="workshop-card__img workshop-card__img--1">
+            <div class="workshop-scene">
+              <div class="ws-table"></div>
+              <div class="ws-person ws-person--1"></div>
+              <div class="ws-person ws-person--2"></div>
+              <div class="ws-terrarium"></div>
+            </div>
+          </div>
+          <div class="workshop-card__body">
+            <h4>Terrarium Basics</h4>
+            <div class="workshop-meta">
+              <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> 2.5 hours</span>
+              <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M5 7h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> Beginner</span>
+            </div>
+            <p class="workshop-price">$85.00 <span>/ person</span></p>
+            <a href="workshops.html" class="btn btn--dark btn--sm">Book now</a>
+          </div>
+        </div>
+        <div class="workshop-card">
+          <div class="workshop-card__img workshop-card__img--2">
+            <div class="workshop-scene">
+              <div class="ws-table"></div>
+              <div class="ws-person ws-person--3"></div>
+              <div class="ws-person ws-person--4"></div>
+              <div class="ws-terrarium ws-terrarium--2"></div>
+            </div>
+          </div>
+          <div class="workshop-card__body">
+            <h4>Advanced Design</h4>
+            <div class="workshop-meta">
+              <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> 3 hours</span>
+              <span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M5 7h4M7 5v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg> Intermediate</span>
+            </div>
+            <p class="workshop-price">$125.00 <span>/ person</span></p>
+            <a href="workshops.html" class="btn btn--dark btn--sm">Book now</a>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="footer__bottom">
-      <p>© 2026 Terrafinity. All rights reserved.</p>
-      <p>Nature, Simplified.</p>
+  <!-- JOURNAL TEASER -->
+  <section class="journal" id="journal">
+    <div class="section-header">
+      <h2>From the journal</h2>
+      <a href="#journal" class="link-arrow">View all <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
-  </footer>
+    <div class="journal-grid">
+      <article class="journal-card journal-card--lg">
+        <div class="journal-card__img journal-card__img--1"></div>
+        <div class="journal-card__body">
+          <span class="journal-tag">Care Guide</span>
+          <h3>How to keep your closed terrarium thriving for years</h3>
+          <p>A closed terrarium is a self-sustaining ecosystem — here's how to set it up for long-term success.</p>
+          <a href="#journal" class="link-arrow small">Read more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+      <article class="journal-card">
+        <div class="journal-card__img journal-card__img--2"></div>
+        <div class="journal-card__body">
+          <span class="journal-tag">Inspiration</span>
+          <h3>5 ways terrariums transform your workspace</h3>
+          <a href="#journal" class="link-arrow small">Read more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+      <article class="journal-card">
+        <div class="journal-card__img journal-card__img--3"></div>
+        <div class="journal-card__body">
+          <span class="journal-tag">Sustainability</span>
+          <h3>Our commitment to ethical sourcing</h3>
+          <a href="#journal" class="link-arrow small">Read more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </section>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast"></div>
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="11" width="16" height="8" rx="2" stroke="#6E7F68" stroke-width="1.3"/><path d="M7 11V7a4 4 0 018 0v4" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <div><strong>Free shipping</strong><p>On orders over $100</p></div>
+    </div>
+    <div class="trust-item">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6l7-3z" stroke="#6E7F68" stroke-width="1.3" stroke-linejoin="round"/></svg>
+      <div><strong>Secure packaging</strong><p>Plants arrive safe &amp; sound</p></div>
+    </div>
+    <div class="trust-item">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#6E7F68" stroke-width="1.3"/><path d="M8 11l2 2 4-4" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><strong>Made to order</strong><p>Crafted with care</p></div>
+    </div>
+    <div class="trust-item">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 10h10M4 14h6" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round"/><path d="M17 14l2 2-2 2" stroke="#6E7F68" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><strong>Support</strong><p>We're here to help</p></div>
+    </div>
+  </div>
+</main>
 
-  <script src="js/main.js"></script>
+<div id="site-footer"></div>
+
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

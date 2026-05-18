@@ -119,10 +119,61 @@ function updateBuilderSummary() {
   price.textContent = `$${builderCalcPrice()}.00`;
 }
 
-/* ===== SCROLL ANIMATIONS ===== */
+/* ===== CAROUSEL ===== */
+function initCarousel() {
+  const track = document.getElementById('productsGrid');
+  const prev  = document.getElementById('carouselPrev');
+  const next  = document.getElementById('carouselNext');
+  if (!track) return;
+
+  const scrollBy = () => track.querySelector('.product-card')?.offsetWidth + 20 || 320;
+
+  if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -scrollBy(), behavior: 'smooth' }));
+  if (next) next.addEventListener('click', () => track.scrollBy({ left:  scrollBy(), behavior: 'smooth' }));
+
+  // Update button visibility
+  function syncBtns() {
+    if (!prev || !next) return;
+    prev.disabled = track.scrollLeft < 8;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+  }
+  track.addEventListener('scroll', syncBtns, { passive: true });
+  syncBtns();
+
+  // Drag-to-scroll
+  let isDragging = false, startX = 0, startScroll = 0;
+  track.addEventListener('mousedown', e => {
+    isDragging = true; startX = e.pageX; startScroll = track.scrollLeft;
+    track.classList.add('is-dragging');
+  });
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    track.scrollLeft = startScroll - (e.pageX - startX);
+  });
+  window.addEventListener('mouseup', () => { isDragging = false; track.classList.remove('is-dragging'); });
+
+  // Roll-in: staggered reveal as cards scroll into view
+  if (window.IntersectionObserver) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const cards = Array.from(track.children);
+          const idx = cards.indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('card--visible'), idx * 80);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, root: track });
+    track.querySelectorAll('.product-card').forEach(c => obs.observe(c));
+  } else {
+    track.querySelectorAll('.product-card').forEach(c => c.classList.add('card--visible'));
+  }
+}
+
+/* ===== SCROLL ANIMATIONS (non-product elements) ===== */
 function initScrollAnimations() {
   if (!window.IntersectionObserver) return;
-  const els = document.querySelectorAll('.product-card, .feature, .workshop-card, .journal-card, .trust-item');
+  const els = document.querySelectorAll('.feature, .workshop-card, .journal-card, .trust-item');
   els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = 'opacity 0.5s ease, transform 0.5s ease'; });
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -142,5 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initPage('home');
   renderProducts();
   initBuilder();
+  initCarousel();
   initScrollAnimations();
 });

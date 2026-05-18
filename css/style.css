@@ -2832,3 +2832,162 @@ h5 { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform
   .series-cta { flex-direction:column; align-items:flex-start; gap:16px; }
   .series-closing { padding:80px 24px; }
 }
+
+/* ===================================================
+   SHOP SECTION — dark carousel + liquid glass cards
+=================================================== */
+.shop {
+  background: linear-gradient(180deg,#0B0B0B 0%,#0e120e 60%,#0B0B0B 100%);
+  max-width: 100%;
+  padding: 100px 0 120px;
+  overflow: hidden;
+}
+.shop__header {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 80px 56px;
+}
+.shop .section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #F5F5F2;
+  line-height: 1.15;
+}
+.shop .section-header h2 em { color: #6E7F68; font-style: italic; }
+.link-arrow--light { color: rgba(245,245,242,0.5); font-size:.85rem; letter-spacing:.04em; }
+.link-arrow--light:hover { color: #F5F5F2; }
+
+/* Carousel track */
+.products-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.products {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 16px 80px 32px;
+  flex: 1;
+}
+.products::-webkit-scrollbar { display: none; }
+
+/* Carousel nav buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #F5F5F2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, transform .2s;
+  flex-shrink: 0;
+}
+.carousel-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.25);
+  transform: translateY(-50%) scale(1.08);
+}
+.carousel-btn:disabled { opacity: 0.25; pointer-events: none; }
+.carousel-btn--prev { left: 20px; }
+.carousel-btn--next { right: 20px; }
+
+/* Liquid glass product cards */
+.product-card {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 -1px 0 rgba(0,0,0,0.2);
+  transition: transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+  cursor: pointer;
+  color: #F5F5F2;
+  /* roll-in starting state */
+  opacity: 0;
+  transform: translateX(60px) scale(0.95);
+}
+.product-card.card--visible {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  transition: opacity .55s ease, transform .55s cubic-bezier(.34,1.2,.64,1);
+}
+.product-card.card--visible:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 28px 64px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    0 0 0 1px rgba(110,127,104,0.25);
+}
+/* glass shine highlight on top edge */
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  pointer-events: none;
+}
+/* glass inner glow */
+.product-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(ellipse at 30% 0%, rgba(255,255,255,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.product-card__img,
+.product-card__body { position: relative; z-index: 1; }
+
+/* override body text for dark card */
+.product-card__body { padding: 18px 20px 20px; }
+.product-card__name { color: #F5F5F2; font-size: .9rem; font-weight: 500; }
+.product-card__price { color: rgba(245,245,242,.55); font-size:.85rem; }
+
+/* add button on dark card */
+.product-card__add {
+  background: rgba(245,245,242,.9);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+}
+
+/* drag cursor while scrolling */
+.products.is-dragging { cursor: grabbing; user-select: none; }
+.products { cursor: grab; }
+
+/* Responsive carousel */
+@media (max-width: 960px) {
+  .shop__header { padding: 0 40px 48px; }
+  .products { padding: 16px 40px 24px; }
+  .carousel-btn--prev { left: 8px; }
+  .carousel-btn--next { right: 8px; }
+  .product-card { flex: 0 0 260px; }
+}
+@media (max-width: 600px) {
+  .shop__header { padding: 0 20px 40px; }
+  .products { padding: 16px 20px 24px; }
+  .product-card { flex: 0 0 220px; }
+  .carousel-btn { width: 40px; height: 40px; }
+}

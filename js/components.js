@@ -181,7 +181,7 @@ function getNavHTML(activePage) {
         ${navLink('create.html', 'Create Your Own', 'create')}
         ${navLink('workshops.html', 'Workshops', 'workshops')}
         ${navLink('gallery.html', 'Gallery', 'gallery')}
-        ${navLink('index.html#journal', 'Journal', 'journal')}
+        ${navLink('about.html', 'About', 'about')}
       </nav>
 
       <div class="nav__actions">
@@ -217,7 +217,7 @@ function getNavHTML(activePage) {
       <a href="create.html">Create Your Own</a>
       <a href="workshops.html">Workshops</a>
       <a href="gallery.html">Gallery</a>
-      <a href="index.html#journal">Journal</a>
+      <a href="about.html">About</a>
       <a href="index.html#contact" class="btn btn--dark" style="margin-top:1rem;">Book a consultation</a>
     </div>
   </header>

@@ -11,7 +11,15 @@ export async function getProducts(filters?: ProductFilters): Promise<Product[]> 
     .select('*, category:categories(*)')
     .order('created_at', { ascending: false })
 
-  if (filters?.category)   query = query.eq('categories.slug', filters.category)
+  if (filters?.category) {
+    const { data: cat } = await supabase
+      .from('categories')
+      .select('id')
+      .eq('slug', filters.category)
+      .single()
+    if (!cat) return []
+    query = query.eq('category_id', cat.id)
+  }
   if (filters?.featured)   query = query.eq('featured', true)
   if (filters?.bestseller) query = query.eq('bestseller', true)
   if (filters?.search)     query = query.ilike('name', `%${filters.search}%`)
@@ -42,7 +50,18 @@ export async function getFeaturedProducts(collection = 'homepage'): Promise<Prod
     .eq('collection', collection)
     .order('sort_order')
   if (error) throw new Error(error.message)
-  return (data ?? []).map((fp) => fp.product as Product).filter(Boolean)
+
+  const fromJunction = (data ?? []).map((fp) => fp.product as Product).filter(Boolean)
+  if (fromJunction.length > 0) return fromJunction
+
+  // Fallback: return products marked featured=true when junction table is empty
+  const { data: fallback } = await supabase
+    .from('products')
+    .select('*, category:categories(*)')
+    .eq('featured', true)
+    .order('created_at', { ascending: false })
+    .limit(8)
+  return (fallback ?? []) as Product[]
 }
 
 export async function createProduct(

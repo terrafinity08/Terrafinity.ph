@@ -5,15 +5,20 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import type { Workshop, WorkshopDate, WorkshopFormData, ActionResult } from '@/lib/types'
 
 export async function getWorkshops(activeOnly = false): Promise<Workshop[]> {
-  const supabase = createAdminClient()
-  let query = supabase
-    .from('workshops')
-    .select('*, dates:workshop_dates(*)')
-    .order('created_at', { ascending: false })
-  if (activeOnly) query = query.eq('active', true)
-  const { data, error } = await query
-  if (error) { console.error('getWorkshops:', error.message); return [] }
-  return (data ?? []) as Workshop[]
+  try {
+    const supabase = createAdminClient()
+    let query = supabase
+      .from('workshops')
+      .select('*, dates:workshop_dates(*)')
+      .order('created_at', { ascending: false })
+    if (activeOnly) query = query.eq('active', true)
+    const { data, error } = await query
+    if (error) { console.error('getWorkshops:', error.message); return [] }
+    return (data ?? []) as Workshop[]
+  } catch (e) {
+    console.error('getWorkshops error:', e)
+    return []
+  }
 }
 
 export async function getWorkshopBySlug(slug: string): Promise<Workshop | null> {

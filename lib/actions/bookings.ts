@@ -54,15 +54,20 @@ export async function createBooking(
 }
 
 export async function getBookings(workshopId?: string): Promise<WorkshopBooking[]> {
-  const supabase = createAdminClient()
-  let query = supabase
-    .from('workshop_bookings')
-    .select('*, workshop:workshops(title,slug), workshop_date:workshop_dates(date,start_time)')
-    .order('created_at', { ascending: false })
-  if (workshopId) query = query.eq('workshop_id', workshopId)
-  const { data, error } = await query
-  if (error) throw new Error(error.message)
-  return (data ?? []) as WorkshopBooking[]
+  try {
+    const supabase = createAdminClient()
+    let query = supabase
+      .from('workshop_bookings')
+      .select('*, workshop:workshops(title,slug), workshop_date:workshop_dates(date,start_time)')
+      .order('created_at', { ascending: false })
+    if (workshopId) query = query.eq('workshop_id', workshopId)
+    const { data, error } = await query
+    if (error) { console.error('getBookings:', error.message); return [] }
+    return (data ?? []) as WorkshopBooking[]
+  } catch (e) {
+    console.error('getBookings error:', e)
+    return []
+  }
 }
 
 export async function updateBookingStatus(

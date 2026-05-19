@@ -6,6 +6,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import type { Category, Product } from '@/lib/types'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = { title: 'Admin — Edit Product' }
 
 async function getProduct(id: string): Promise<Product | null> {

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Admin — Dashboard' }
-export const revalidate = 30
+export const dynamic = 'force-dynamic'
 
 async function getStats() {
   const supabase = createAdminClient()

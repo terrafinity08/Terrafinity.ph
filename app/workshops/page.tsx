@@ -5,7 +5,7 @@ import WorkshopCard from '@/components/store/WorkshopCard'
 import { getWorkshops } from '@/lib/actions/workshops'
 
 export const metadata: Metadata = { title: 'Workshops' }
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export default async function WorkshopsPage() {
   const workshops = await getWorkshops(true)

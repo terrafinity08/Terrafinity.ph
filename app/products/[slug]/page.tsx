@@ -10,7 +10,7 @@ import Badge from '@/components/ui/Badge'
 import { getProductBySlug, getProducts } from '@/lib/actions/products'
 import { formatPrice } from '@/lib/utils'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 interface Params { params: Promise<{ slug: string }> }
 
@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: Params) {
   const product = await getProductBySlug(slug)
   if (!product) notFound()
 
-  const related = (await getProducts({ category: product.category_id ?? undefined }))
+  const related = (await getProducts({ category: product.category?.slug ?? undefined }))
     .filter((p) => p.id !== product.id)
     .slice(0, 4)
 

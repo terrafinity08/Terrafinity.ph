@@ -28,7 +28,7 @@
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
   .glass {
-    @apply bg-white/82 backdrop-blur-xl border border-stone-100;
+    @apply bg-white/80 backdrop-blur-xl border border-stone-100;
   }
 
   .text-balance { text-wrap: balance; }

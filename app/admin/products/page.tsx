@@ -8,7 +8,7 @@ import DeleteProductButton from './DeleteProductButton'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Admin — Products' }
-export const revalidate = 0
+export const dynamic = 'force-dynamic'
 
 export default async function AdminProductsPage() {
   const products = await getProducts()

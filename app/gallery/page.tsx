@@ -11,7 +11,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import type { Category, ProductFilters } from '@/lib/types'
 
 export const metadata: Metadata = { title: 'Gallery' }
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 async function getCategories(): Promise<Category[]> {
   const supabase = createAdminClient()

@@ -7,7 +7,7 @@ import DeleteWorkshopButton from './DeleteWorkshopButton'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Admin — Workshops' }
-export const revalidate = 0
+export const dynamic = 'force-dynamic'
 
 export default async function AdminWorkshopsPage() {
   const workshops = await getWorkshops()

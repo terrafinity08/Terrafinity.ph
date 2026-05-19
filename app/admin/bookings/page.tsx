@@ -6,7 +6,7 @@ import { format, parseISO } from 'date-fns'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Admin — Bookings' }
-export const revalidate = 0
+export const dynamic = 'force-dynamic'
 
 const statusVariant = {
   pending:   'warning',

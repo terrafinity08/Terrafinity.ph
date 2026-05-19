@@ -9,7 +9,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Clock, Users, CheckCircle2 } from 'lucide-react'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 interface Props { params: Promise<{ slug: string }> }
 

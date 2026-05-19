@@ -3,6 +3,7 @@ import Link from 'next/link'
 import WorkshopForm from '@/components/admin/WorkshopForm'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = { title: 'Admin — New Workshop' }
 
 export default function NewWorkshopPage() {

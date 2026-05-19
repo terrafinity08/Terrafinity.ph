@@ -8,7 +8,7 @@ import WorkshopCard from '@/components/store/WorkshopCard'
 import { getFeaturedProducts } from '@/lib/actions/products'
 import { getWorkshops } from '@/lib/actions/workshops'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
   const [featured, workshops] = await Promise.all([

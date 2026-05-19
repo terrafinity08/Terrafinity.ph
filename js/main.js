@@ -46,78 +46,6 @@ function renderProducts() {
     </div>`).join('');
 }
 
-/* ===== MINI BUILDER (homepage widget) ===== */
-const builderState = { step: 0, glass: 'Sphere', landscape: 'Forest Style', plants: 'Lush Green Plants', touches: [], basePrice: 149 };
-const TOUCH_PRICES = { 'Driftwood': 12, 'River Stones': 8, 'Figurine': 15, 'LED Base': 25 };
-
-function initBuilder() {
-  const next = document.getElementById('builderNext');
-  const prev = document.getElementById('builderPrev');
-  if (next) next.addEventListener('click', () => builderNavigate(1));
-  if (prev) prev.addEventListener('click', () => builderNavigate(-1));
-
-  document.querySelectorAll('[data-panel="0"] .builder-opt').forEach(el => {
-    el.addEventListener('click', () => {
-      document.querySelectorAll('[data-panel="0"] .builder-opt').forEach(o => o.classList.remove('selected'));
-      el.classList.add('selected');
-      builderState.glass = el.dataset.value;
-    });
-  });
-
-  [1, 2].forEach(p => {
-    document.querySelectorAll(`[data-panel="${p}"] .builder-opt-list`).forEach(el => {
-      el.addEventListener('click', () => {
-        document.querySelectorAll(`[data-panel="${p}"] .builder-opt-list`).forEach(o => o.classList.remove('selected'));
-        el.classList.add('selected');
-        if (p === 1) builderState.landscape = el.dataset.value;
-        if (p === 2) builderState.plants = el.dataset.value;
-      });
-    });
-  });
-
-  document.querySelectorAll('[data-panel="3"] .builder-opt-list').forEach(el => {
-    el.addEventListener('click', () => {
-      el.classList.toggle('selected');
-      const val = el.dataset.value;
-      if (el.classList.contains('selected')) { if (!builderState.touches.includes(val)) builderState.touches.push(val); }
-      else { builderState.touches = builderState.touches.filter(v => v !== val); }
-    });
-  });
-
-  const addBtn = document.getElementById('addToCartBuilder');
-  if (addBtn) addBtn.addEventListener('click', () => {
-    const name = `Custom ${builderState.glass} Terrarium`;
-    addToCart('custom-' + Date.now(), name, builderCalcPrice());
-  });
-}
-
-function builderNavigate(dir) {
-  const newStep = builderState.step + dir;
-  if (newStep < 0 || newStep > 4) return;
-  builderState.step = newStep;
-  document.querySelectorAll('.builder-step').forEach((el, i) => el.classList.toggle('active', i === builderState.step));
-  document.querySelectorAll('.builder-panel').forEach((el, i) => el.classList.toggle('active', i === builderState.step));
-  const next = document.getElementById('builderNext');
-  const prev = document.getElementById('builderPrev');
-  if (prev) prev.style.display = builderState.step === 0 ? 'none' : '';
-  if (next) next.style.display = builderState.step === 4 ? 'none' : '';
-  if (builderState.step === 4) updateBuilderSummary();
-}
-
-function builderCalcPrice() {
-  let p = builderState.basePrice;
-  builderState.touches.forEach(t => { p += TOUCH_PRICES[t] || 0; });
-  return p;
-}
-
-function updateBuilderSummary() {
-  const list = document.getElementById('summaryList');
-  const price = document.getElementById('summaryPrice');
-  if (!list || !price) return;
-  const items = [builderState.glass, builderState.landscape, builderState.plants, ...builderState.touches];
-  list.innerHTML = items.map(i => `<li>${i}</li>`).join('');
-  price.textContent = `$${builderCalcPrice()}.00`;
-}
 
 /* ===== CAROUSEL ===== */
 function initCarousel() {
@@ -192,7 +120,6 @@ function initScrollAnimations() {
 document.addEventListener('DOMContentLoaded', () => {
   initPage('home');
   renderProducts();
-  initBuilder();
   initCarousel();
   initScrollAnimations();
 });

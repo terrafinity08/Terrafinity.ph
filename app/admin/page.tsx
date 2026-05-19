@@ -9,20 +9,24 @@ export const metadata: Metadata = { title: 'Admin — Dashboard' }
 export const dynamic = 'force-dynamic'
 
 async function getStats() {
-  const supabase = createAdminClient()
-  const [products, workshops, bookings] = await Promise.all([
-    supabase.from('products').select('id', { count: 'exact', head: true }),
-    supabase.from('workshops').select('id', { count: 'exact', head: true }),
-    supabase.from('workshop_bookings').select('total_price, status'),
-  ])
-  const revenue = (bookings.data ?? [])
-    .filter((b) => b.status !== 'cancelled')
-    .reduce((sum, b) => sum + Number(b.total_price), 0)
-  return {
-    productCount: products.count ?? 0,
-    workshopCount: workshops.count ?? 0,
-    bookingCount: bookings.data?.length ?? 0,
-    revenue,
+  try {
+    const supabase = createAdminClient()
+    const [products, workshops, bookings] = await Promise.all([
+      supabase.from('products').select('id', { count: 'exact', head: true }),
+      supabase.from('workshops').select('id', { count: 'exact', head: true }),
+      supabase.from('workshop_bookings').select('total_price, status'),
+    ])
+    const revenue = (bookings.data ?? [])
+      .filter((b) => b.status !== 'cancelled')
+      .reduce((sum, b) => sum + Number(b.total_price), 0)
+    return {
+      productCount: products.count ?? 0,
+      workshopCount: workshops.count ?? 0,
+      bookingCount: bookings.data?.length ?? 0,
+      revenue,
+    }
+  } catch {
+    return { productCount: 0, workshopCount: 0, bookingCount: 0, revenue: 0 }
   }
 }
 

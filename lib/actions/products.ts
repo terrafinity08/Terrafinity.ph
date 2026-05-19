@@ -27,7 +27,7 @@ export async function getProducts(filters?: ProductFilters): Promise<Product[]> 
   if (filters?.maxPrice)   query = query.lte('price', filters.maxPrice)
 
   const { data, error } = await query
-  if (error) throw new Error(error.message)
+  if (error) { console.error('getProducts:', error.message); return [] }
   return (data ?? []) as Product[]
 }
 
@@ -49,7 +49,7 @@ export async function getFeaturedProducts(collection = 'homepage'): Promise<Prod
     .select('*, product:products(*, category:categories(*))')
     .eq('collection', collection)
     .order('sort_order')
-  if (error) throw new Error(error.message)
+  if (error) { console.error('getFeaturedProducts:', error.message); return [] }
 
   const fromJunction = (data ?? []).map((fp) => fp.product as Product).filter(Boolean)
   if (fromJunction.length > 0) return fromJunction

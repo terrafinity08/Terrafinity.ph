@@ -12,7 +12,7 @@ export async function getWorkshops(activeOnly = false): Promise<Workshop[]> {
     .order('created_at', { ascending: false })
   if (activeOnly) query = query.eq('active', true)
   const { data, error } = await query
-  if (error) throw new Error(error.message)
+  if (error) { console.error('getWorkshops:', error.message); return [] }
   return (data ?? []) as Workshop[]
 }
 

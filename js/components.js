@@ -111,14 +111,14 @@ function updateCartUI() {
       </div>
       <div class="cart-item__info">
         <p class="cart-item__name">${item.name}</p>
-        <p class="cart-item__price">$${(item.price * item.qty).toFixed(2)}${item.qty > 1 ? ` <span style="color:#aaa">× ${item.qty}</span>` : ''}</p>
+        <p class="cart-item__price">₱${(item.price * item.qty).toLocaleString()}${item.qty > 1 ? ` <span style="color:#aaa">× ${item.qty}</span>` : ''}</p>
         <button class="cart-item__remove" onclick="removeFromCart(${JSON.stringify(item.id)})">Remove</button>
       </div>
     </div>`).join('');
 
   if (footer) {
     footer.style.display = 'block';
-    if (subtotalEl) subtotalEl.textContent = `$${getCartTotal().toFixed(2)}`;
+    if (subtotalEl) subtotalEl.textContent = `₱${getCartTotal().toLocaleString()}`;
   }
 }
 
@@ -243,7 +243,7 @@ function getNavHTML(activePage) {
         <span>Subtotal</span>
         <span id="cartSubtotal">$0.00</span>
       </div>
-      <p class="cart-note">Free shipping on orders over $100</p>
+      <p class="cart-note">Free shipping on orders over ₱2,500</p>
       <button class="btn btn--dark btn--full">Checkout</button>
     </div>
   </aside>`;
@@ -283,7 +283,7 @@ function getFooterHTML() {
       </div>
       <div class="footer__col">
         <h5>Company</h5>
-        <a href="index.html#about">About Us</a>
+        <a href="about.html">About Us</a>
         <a href="index.html#about">Sustainability</a>
         <a href="index.html#about">Our Process</a>
         <a href="index.html#about">Care Guide</a>

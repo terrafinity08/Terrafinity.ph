@@ -32,7 +32,7 @@
       </div>
       <div class="preview-info">
         <p class="preview-label" id="previewLabel">Medium Sphere · Forest · Lush Greens</p>
-        <p class="preview-price" id="previewPrice">$149</p>
+        <p class="preview-price" id="previewPrice">₱7,450</p>
       </div>
       <div class="preview-care">
         <div class="preview-care-item" id="careDifficulty">
@@ -126,7 +126,7 @@
             </div>
             <p class="option-card__label">Small</p>
             <p class="option-card__desc">~12cm · desk friendly</p>
-            <p class="option-card__price-tag">from $99</p>
+            <p class="option-card__price-tag">from ₱4,950</p>
           </div>
           <div class="option-card selected" data-step="2" data-value="medium" data-price="149" onclick="selectOption(this, 2)">
             <div class="option-card__visual">
@@ -134,7 +134,7 @@
             </div>
             <p class="option-card__label">Medium</p>
             <p class="option-card__desc">~18cm · most popular</p>
-            <p class="option-card__price-tag">from $149</p>
+            <p class="option-card__price-tag">from ₱7,450</p>
           </div>
           <div class="option-card" data-step="2" data-value="large" data-price="219" onclick="selectOption(this, 2)">
             <div class="option-card__visual">
@@ -142,7 +142,7 @@
             </div>
             <p class="option-card__label">Large</p>
             <p class="option-card__desc">~28cm · statement piece</p>
-            <p class="option-card__price-tag">from $219</p>
+            <p class="option-card__price-tag">from ₱10,950</p>
           </div>
         </div>
         <div class="beginner-tip">
@@ -259,7 +259,7 @@
             </div>
             <p class="option-card__label">Driftwood</p>
             <p class="option-card__desc">Natural sculptural anchor</p>
-            <p class="option-card__extra">+$12</p>
+            <p class="option-card__extra">+₱600</p>
           </div>
           <div class="option-card finishing-opt" data-value="stones" data-extra="8" onclick="toggleFinishing(this)">
             <div class="option-card__visual" style="background:var(--fog);border-radius:10px">
@@ -271,7 +271,7 @@
             </div>
             <p class="option-card__label">River Stones</p>
             <p class="option-card__desc">Polished natural rocks</p>
-            <p class="option-card__extra">+$8</p>
+            <p class="option-card__extra">+₱400</p>
           </div>
           <div class="option-card finishing-opt" data-value="figurine" data-extra="15" onclick="toggleFinishing(this)">
             <div class="option-card__visual" style="background:var(--fog);border-radius:10px">
@@ -279,7 +279,7 @@
             </div>
             <p class="option-card__label">Tiny Figurine</p>
             <p class="option-card__desc">A miniature story element</p>
-            <p class="option-card__extra">+$15</p>
+            <p class="option-card__extra">+₱750</p>
           </div>
           <div class="option-card finishing-opt" data-value="led" data-extra="25" onclick="toggleFinishing(this)">
             <div class="option-card__visual" style="background:var(--fog);border-radius:10px">
@@ -287,7 +287,7 @@
             </div>
             <p class="option-card__label">LED Base</p>
             <p class="option-card__desc">Warm glow from below</p>
-            <p class="option-card__extra">+$25</p>
+            <p class="option-card__extra">+₱1,250</p>
           </div>
         </div>
         <div class="beginner-tip">
@@ -299,7 +299,7 @@
       <div class="price-tracker">
         <div>
           <p style="font-size:0.8rem;color:#888;margin-bottom:2px">Estimated price</p>
-          <p style="font-size:1.5rem;font-weight:700" id="builderPriceDisplay">$149</p>
+          <p style="font-size:1.5rem;font-weight:700" id="builderPriceDisplay">₱7,450</p>
         </div>
         <div style="text-align:right">
           <p style="font-size:0.75rem;color:#aaa">Free shipping · 2–4 weeks</p>
@@ -376,11 +376,11 @@
     landscape: 'forest',
     plants: 'lush',
     finishing: new Set(),
-    basePrice: 149
+    basePrice: 7450
   };
 
-  const FINISHING_PRICES = { driftwood: 12, stones: 8, figurine: 15, led: 25 };
-  const SIZE_PRICES = { small: 99, medium: 149, large: 219 };
+  const FINISHING_PRICES = { driftwood: 600, stones: 400, figurine: 750, led: 1250 };
+  const SIZE_PRICES = { small: 4950, medium: 7450, large: 10950 };
 
   const CARE_INFO = {
     forest:   { water: 'monthly', light: 'indirect' },
@@ -436,7 +436,7 @@
   }
 
   function updatePriceDisplay() {
-    const p = `$${calcPrice()}`;
+    const p = `₱${calcPrice().toLocaleString()}`;
     document.getElementById('builderPriceDisplay').textContent = p;
     document.getElementById('previewPrice').textContent = p;
   }

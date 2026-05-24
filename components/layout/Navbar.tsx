@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ShoppingBag, Menu, X } from 'lucide-react'
 import { useState } from 'react'
@@ -20,8 +21,8 @@ export default function Navbar() {
     <header className="fixed top-0 inset-x-0 z-50">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between bg-canvas/88 backdrop-blur-xl border-b border-stone-200/60 shadow-[0_1px_12px_rgba(0,0,0,0.05)]">
         {/* Logo */}
-        <Link href="/" className="font-serif text-lg font-bold text-ink tracking-tight hover:opacity-70 transition-opacity">
-          Terrafinity
+        <Link href="/" className="hover:opacity-70 transition-opacity">
+          <Image src="/logo.png" alt="Terrafinity" width={120} height={48} className="h-12 w-auto" priority />
         </Link>
 
         {/* Desktop nav */}

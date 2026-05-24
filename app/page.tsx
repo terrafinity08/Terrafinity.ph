@@ -21,17 +21,26 @@ export default async function HomePage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="relative min-h-screen flex items-center justify-center bg-canvas overflow-hidden pt-20">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(10,10,10,0.04),transparent)]" />
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+          {/* Background photo — place your image at public/hero-bg.jpg */}
+          <Image
+            src="/hero-bg.jpg"
+            alt=""
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* Soft white wash so text stays legible over the photo */}
+          <div className="absolute inset-0 bg-white/55" />
           <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-stone-400 mb-8">
+            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-stone-500 mb-8">
               Handcrafted in the Philippines
             </p>
             <h1 className="font-serif text-6xl md:text-8xl font-bold text-ink tracking-tight leading-[0.95] mb-8 text-balance">
               Living worlds<br />
-              <em className="not-italic text-stone-400">under glass</em>
+              <em className="not-italic text-stone-500">under glass</em>
             </h1>
-            <p className="text-lg md:text-xl text-stone-500 max-w-xl mx-auto leading-relaxed mb-12">
+            <p className="text-lg md:text-xl text-stone-600 max-w-xl mx-auto leading-relaxed mb-12">
               Each terrarium is a hand-placed ecosystem — a living sculpture for your home or workspace.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -43,7 +52,7 @@ export default async function HomePage() {
               </Link>
               <Link
                 href="/workshops"
-                className="inline-flex items-center gap-2 border border-stone-200 text-ink font-medium px-8 py-4 rounded-full hover:bg-stone-50 transition-colors"
+                className="inline-flex items-center gap-2 border border-stone-200 bg-white/70 text-ink font-medium px-8 py-4 rounded-full hover:bg-white transition-colors"
               >
                 Book a workshop
               </Link>

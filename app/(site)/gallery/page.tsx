@@ -14,9 +14,13 @@ export const metadata: Metadata = { title: 'Gallery' }
 export const dynamic = 'force-dynamic'
 
 async function getCategories(): Promise<Category[]> {
-  const supabase = createAdminClient()
-  const { data } = await supabase.from('categories').select('*').order('sort_order')
-  return (data ?? []) as Category[]
+  try {
+    const supabase = createAdminClient()
+    const { data } = await supabase.from('categories').select('*').order('sort_order')
+    return (data ?? []) as Category[]
+  } catch {
+    return []
+  }
 }
 
 interface PageProps {

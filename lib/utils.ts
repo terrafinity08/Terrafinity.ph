@@ -5,7 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatPrice(amount: number): string {
+export function formatPrice(amount: number | null | undefined): string {
+  if (amount == null) return '₱—'
   return `₱${amount.toLocaleString('en-PH')}`
 }
 

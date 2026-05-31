@@ -5,7 +5,7 @@ import type { ActionResult } from '@/lib/types'
 
 export async function uploadImage(
   formData: FormData,
-  bucket: 'product-images' | 'workshop-images'
+  bucket: 'product-images' | 'workshop-images' | 'site-images'
 ): Promise<ActionResult<{ url: string; path: string }>> {
   const file = formData.get('file') as File | null
   if (!file) return { success: false, error: 'No file provided' }
@@ -43,7 +43,7 @@ export async function uploadImage(
 
 export async function deleteImage(
   path: string,
-  bucket: 'product-images' | 'workshop-images'
+  bucket: 'product-images' | 'workshop-images' | 'site-images'
 ): Promise<ActionResult> {
   const supabase = createAdminClient()
   const { error } = await supabase.storage.from(bucket).remove([path])

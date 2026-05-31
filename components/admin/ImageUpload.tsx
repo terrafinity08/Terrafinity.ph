@@ -10,7 +10,7 @@ import { uploadImage } from '@/lib/actions/upload'
 interface ImageUploadProps {
   value?: string
   onChange: (url: string) => void
-  bucket?: 'product-images' | 'workshop-images'
+  bucket?: 'product-images' | 'workshop-images' | 'site-images'
   label?: string
 }
 

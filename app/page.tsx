@@ -7,13 +7,15 @@ import ProductCard from '@/components/store/ProductCard'
 import WorkshopCard from '@/components/store/WorkshopCard'
 import { getFeaturedProducts } from '@/lib/actions/products'
 import { getWorkshops } from '@/lib/actions/workshops'
+import { getSetting } from '@/lib/actions/settings'
 
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
-  const [featured, workshops] = await Promise.all([
+  const [featured, workshops, heroUrl] = await Promise.all([
     getFeaturedProducts('homepage'),
     getWorkshops(true),
+    getSetting('hero_image_url'),
   ])
 
   return (
@@ -22,16 +24,20 @@ export default async function HomePage() {
       <main>
         {/* Hero */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-          {/* Background photo — place your image at public/hero-bg.jpg */}
-          <Image
-            src="/hero-bg.jpg"
-            alt=""
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          {/* Soft white wash so text stays legible over the photo */}
-          <div className="absolute inset-0 bg-white/55" />
+          {heroUrl ? (
+            <>
+              <Image
+                src={heroUrl}
+                alt=""
+                fill
+                className="object-cover object-center"
+                priority
+              />
+              <div className="absolute inset-0 bg-white/55" />
+            </>
+          ) : (
+            <div className="absolute inset-0 bg-canvas" />
+          )}
           <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
             <p className="text-xs font-semibold tracking-[0.25em] uppercase text-stone-500 mb-8">
               Handcrafted in the Philippines

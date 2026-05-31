@@ -1,17 +1,20 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { CheckCircle2 } from 'lucide-react'
-import Button from '@/components/ui/Button'
-import { Input, Textarea } from '@/components/ui/Input'
 import { createBooking } from '@/lib/actions/bookings'
 import { formatPrice, getSpotsLeft } from '@/lib/utils'
 import type { Workshop, WorkshopDate } from '@/lib/types'
-import { format, parseISO } from 'date-fns'
-import { cn } from '@/lib/utils'
 
-interface Props {
-  workshop: Workshop
+interface Props { workshop: Workshop }
+
+const inputStyle: React.CSSProperties = {
+  width: '100%', background: 'rgba(255,255,255,0.07)',
+  border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px',
+  padding: '0.8rem 1rem', color: 'var(--white)', fontSize: '0.9rem', outline: 'none',
+}
+const labelStyle: React.CSSProperties = {
+  fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase',
+  color: 'var(--stone)', marginBottom: '0.4rem', display: 'block',
 }
 
 export default function WorkshopBooking({ workshop }: Props) {
@@ -26,14 +29,20 @@ export default function WorkshopBooking({ workshop }: Props) {
     .filter((d) => d.active && new Date(d.date) >= new Date())
     .sort((a, b) => a.date.localeCompare(b.date))
 
-  const total = workshop.price * qty
+  const total = (workshop.price ?? 0) * qty
+
+  function fmt(dateStr: string) {
+    try {
+      return new Date(dateStr).toLocaleDateString('en-PH', { weekday: 'short', month: 'short', day: 'numeric' })
+    } catch { return dateStr }
+  }
 
   function handleSubmit() {
     setError(null)
     if (!selectedDate) { setError('Please select a date'); return }
     if (!form.name.trim()) { setError('Name is required'); return }
     if (!form.email.trim()) { setError('Email is required'); return }
-    if (qty < 1 || qty > getSpotsLeft(selectedDate)) { setError('Invalid quantity'); return }
+    if (qty < 1) { setError('Invalid quantity'); return }
 
     startTransition(async () => {
       const result = await createBooking(
@@ -55,70 +64,55 @@ export default function WorkshopBooking({ workshop }: Props) {
 
   if (success) {
     return (
-      <div className="bg-white rounded-3xl border border-stone-100 shadow-glass p-8 text-center flex flex-col items-center gap-5">
-        <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center">
-          <CheckCircle2 className="h-8 w-8 text-emerald-500" />
+      <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '16px', padding: '2.5rem', textAlign: 'center', border: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ width: '56px', height: '56px', background: 'rgba(109,184,126,0.15)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l6 6 10-10" stroke="#6db87e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </div>
-        <div>
-          <h3 className="font-serif text-2xl font-bold text-ink mb-2">You're booked!</h3>
-          <p className="text-stone-500 text-sm">
-            We'll send a confirmation to <strong>{form.email}</strong> shortly.
-          </p>
-        </div>
-        <div className="bg-stone-50 rounded-2xl p-4 w-full text-left">
-          <p className="text-xs text-stone-400 font-semibold tracking-widest uppercase mb-2">Booking summary</p>
-          <p className="text-sm text-stone-700 font-medium">{workshop.title}</p>
-          {selectedDate && (
-            <p className="text-sm text-stone-500 mt-1">
-              {format(parseISO(selectedDate.date), 'EEEE, MMMM d, yyyy')} · {selectedDate.start_time}
-            </p>
-          )}
-          <p className="text-sm font-semibold text-ink mt-2">{formatPrice(total)}</p>
+        <h3 style={{ color: 'var(--white)', fontSize: '1.5rem', fontFamily: 'var(--font-serif)', fontWeight: 700, marginBottom: '0.75rem' }}>You&apos;re booked!</h3>
+        <p style={{ color: 'var(--stone)', fontSize: '0.9rem' }}>Confirmation sent to <strong style={{ color: 'var(--white)' }}>{form.email}</strong></p>
+        <div style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '10px', padding: '1rem', marginTop: '1.5rem', textAlign: 'left' }}>
+          <p style={{ color: 'var(--stone)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>Booking summary</p>
+          <p style={{ color: 'var(--white)', fontWeight: 600, fontSize: '0.95rem' }}>{workshop.title}</p>
+          {selectedDate && <p style={{ color: 'var(--stone)', fontSize: '0.85rem', marginTop: '0.25rem' }}>{fmt(selectedDate.date)} · {selectedDate.start_time}</p>}
+          <p style={{ color: 'var(--white)', fontWeight: 700, marginTop: '0.5rem' }}>{formatPrice(total)}</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-3xl border border-stone-100 shadow-glass p-6 md:p-8 sticky top-24">
-      <div className="mb-6">
-        <p className="font-serif text-3xl font-bold text-ink">{formatPrice(workshop.price)}</p>
-        <p className="text-sm text-stone-400 mt-1">per person</p>
-      </div>
+    <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '16px', padding: '2rem', border: '1px solid rgba(255,255,255,0.08)', position: 'sticky', top: '100px' }}>
+      <p style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 700, color: 'var(--white)', marginBottom: '0.25rem' }}>{formatPrice(workshop.price)}</p>
+      <p style={{ color: 'var(--stone)', fontSize: '0.85rem', marginBottom: '2rem' }}>per person</p>
 
-      {/* Date selection */}
-      <div className="mb-6">
-        <p className="text-xs font-semibold tracking-widest uppercase text-stone-400 mb-3">Select a date</p>
+      {/* Dates */}
+      <div style={{ marginBottom: '1.5rem' }}>
+        <p style={labelStyle}>Select a date</p>
         {upcomingDates.length === 0 ? (
-          <p className="text-sm text-stone-400">No upcoming dates scheduled.</p>
+          <p style={{ color: 'var(--stone)', fontSize: '0.9rem' }}>No upcoming dates scheduled. <a href="/create" style={{ color: 'var(--green-mid)', textDecoration: 'none' }}>Request a private session →</a></p>
         ) : (
-          <div className="flex flex-col gap-2">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {upcomingDates.map((d) => {
               const left = getSpotsLeft(d)
               const full = left === 0
+              const selected = selectedDate?.id === d.id
               return (
                 <button
                   key={d.id}
                   disabled={full}
                   onClick={() => setSelectedDate(d)}
-                  className={cn(
-                    'flex items-center justify-between w-full rounded-xl border px-4 py-3 text-sm text-left transition-all',
-                    full ? 'opacity-40 cursor-not-allowed border-stone-100' :
-                    selectedDate?.id === d.id
-                      ? 'border-ink bg-ink text-canvas'
-                      : 'border-stone-200 hover:border-stone-400'
-                  )}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    background: selected ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.04)',
+                    border: selected ? '1px solid rgba(255,255,255,0.3)' : '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: '8px', padding: '0.75rem 1rem', cursor: full ? 'not-allowed' : 'pointer',
+                    opacity: full ? 0.4 : 1, color: 'var(--white)', fontSize: '0.875rem',
+                  }}
                 >
-                  <span className="font-medium">{format(parseISO(d.date), 'EEE, MMM d')}</span>
-                  <span className="flex items-center gap-2 text-xs">
+                  <span style={{ fontWeight: 500 }}>{fmt(d.date)}</span>
+                  <span style={{ display: 'flex', gap: '0.75rem', fontSize: '0.8rem', color: 'var(--stone)' }}>
                     <span>{d.start_time}</span>
-                    {full ? (
-                      <span className="text-stone-400">Full</span>
-                    ) : left <= 3 ? (
-                      <span className="text-amber-600">{left} left</span>
-                    ) : (
-                      <span className={selectedDate?.id === d.id ? 'text-white/60' : 'text-stone-400'}>{left} spots</span>
-                    )}
+                    {full ? <span>Full</span> : left <= 3 ? <span style={{ color: '#c9a84c' }}>{left} left</span> : <span>{left} spots</span>}
                   </span>
                 </button>
               )
@@ -128,41 +122,47 @@ export default function WorkshopBooking({ workshop }: Props) {
       </div>
 
       {/* Qty */}
-      <div className="mb-6">
-        <p className="text-xs font-semibold tracking-widest uppercase text-stone-400 mb-3">Participants</p>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setQty((q) => Math.max(1, q - 1))}
-            className="w-9 h-9 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-50 transition-colors"
-          >
-            −
-          </button>
-          <span className="w-8 text-center font-medium text-ink">{qty}</span>
-          <button
-            onClick={() => setQty((q) => Math.min(selectedDate ? getSpotsLeft(selectedDate) : workshop.max_participants, q + 1))}
-            className="w-9 h-9 rounded-full border border-stone-200 flex items-center justify-center hover:bg-stone-50 transition-colors"
-          >
-            +
-          </button>
-          <span className="text-sm text-stone-400 ml-2">= {formatPrice(total)}</span>
+      <div style={{ marginBottom: '1.5rem' }}>
+        <p style={labelStyle}>Participants</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <button onClick={() => setQty((q) => Math.max(1, q - 1))} style={{ width: '36px', height: '36px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.15)', background: 'transparent', color: 'var(--white)', fontSize: '1.2rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>−</button>
+          <span style={{ color: 'var(--white)', fontWeight: 600, minWidth: '24px', textAlign: 'center' }}>{qty}</span>
+          <button onClick={() => setQty((q) => Math.min(selectedDate ? getSpotsLeft(selectedDate) : workshop.max_participants, q + 1))} style={{ width: '36px', height: '36px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.15)', background: 'transparent', color: 'var(--white)', fontSize: '1.2rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>+</button>
+          <span style={{ color: 'var(--stone)', fontSize: '0.9rem' }}>= {formatPrice(total)}</span>
         </div>
       </div>
 
       {/* Contact */}
-      <div className="flex flex-col gap-4 mb-6">
-        <Input label="Full name" value={form.name} onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))} placeholder="Maria Santos" />
-        <Input label="Email" type="email" value={form.email} onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))} placeholder="maria@email.com" />
-        <Input label="Phone (optional)" value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} placeholder="+63 917 000 0000" />
-        <Textarea label="Notes (optional)" value={form.notes} onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))} rows={2} placeholder="Any questions or special requests?" />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
+        {[
+          { label: 'Full name', name: 'name', type: 'text', placeholder: 'Maria Santos' },
+          { label: 'Email', name: 'email', type: 'email', placeholder: 'maria@email.com' },
+          { label: 'Phone (optional)', name: 'phone', type: 'tel', placeholder: '+63 917 000 0000' },
+        ].map(({ label, name, type, placeholder }) => (
+          <div key={name}>
+            <label style={labelStyle}>{label}</label>
+            <input type={type} name={name} placeholder={placeholder} required={name !== 'phone'} value={form[name as keyof typeof form]} onChange={(e) => setForm(p => ({ ...p, [name]: e.target.value }))} style={inputStyle} />
+          </div>
+        ))}
+        <div>
+          <label style={labelStyle}>Notes (optional)</label>
+          <textarea name="notes" placeholder="Any questions or special requests?" rows={2} value={form.notes} onChange={(e) => setForm(p => ({ ...p, notes: e.target.value }))} style={{ ...inputStyle, resize: 'vertical' }} />
+        </div>
       </div>
 
       {error && (
-        <div className="mb-4 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600">{error}</div>
+        <div style={{ background: 'rgba(220,50,50,0.1)', border: '1px solid rgba(220,50,50,0.3)', borderRadius: '8px', padding: '0.75rem 1rem', color: '#ff8080', fontSize: '0.875rem', marginBottom: '1rem' }}>{error}</div>
       )}
 
-      <Button onClick={handleSubmit} loading={isPending} size="lg" className="w-full" disabled={upcomingDates.length === 0}>
-        Confirm booking — {formatPrice(total)}
-      </Button>
+      <button
+        onClick={handleSubmit}
+        disabled={isPending || upcomingDates.length === 0}
+        style={{ width: '100%', background: 'var(--white)', color: 'var(--black)', border: 'none', borderRadius: '50px', padding: '1rem', fontWeight: 700, fontSize: '0.95rem', cursor: isPending ? 'wait' : 'pointer', opacity: isPending ? 0.7 : 1, transition: 'opacity 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+      >
+        {isPending ? (
+          <><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ animation: 'spin 1s linear infinite' }}><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg> Booking…</>
+        ) : `Confirm booking — ${formatPrice(total)}`}
+      </button>
     </div>
   )
 }

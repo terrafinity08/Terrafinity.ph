@@ -1,13 +1,12 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 import WorkshopBooking from './WorkshopBooking'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { getWorkshopBySlug } from '@/lib/actions/workshops'
 import { formatPrice } from '@/lib/utils'
-import Image from 'next/image'
-import Link from 'next/link'
-import { ArrowLeft, Clock, Users, CheckCircle2 } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -33,73 +32,91 @@ export default async function WorkshopDetailPage({ params }: Props) {
   return (
     <>
       <Navbar />
-      <main className="pt-20 min-h-screen">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <Link href="/workshops" className="inline-flex items-center gap-2 text-sm text-stone-400 hover:text-ink transition-colors mb-8">
-            <ArrowLeft className="h-4 w-4" /> All workshops
+      <main style={{ background: 'var(--black)', minHeight: '100vh', paddingTop: '80px' }}>
+
+        {/* Breadcrumb */}
+        <div style={{ padding: '1.5rem 2rem 0', maxWidth: '1100px', margin: '0 auto' }}>
+          <Link href="/workshops" style={{ color: 'var(--stone)', fontSize: '0.85rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L3 7l6-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            All workshops
           </Link>
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Left: Info */}
-            <div className="flex flex-col gap-8">
-              {workshop.image_url && (
-                <div className="relative aspect-video rounded-3xl overflow-hidden bg-stone-50">
-                  <Image src={workshop.image_url} alt={workshop.title} fill className="object-cover" priority sizes="(max-width:1024px) 100vw, 50vw" />
-                </div>
-              )}
+        {/* Layout */}
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '2rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
 
-              <div>
-                <h1 className="font-serif text-4xl md:text-5xl font-bold text-ink tracking-tight mb-4">{workshop.title}</h1>
-                {workshop.description && (
-                  <p className="text-stone-500 leading-relaxed">{workshop.description}</p>
-                )}
+          {/* Left: Info */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+
+            {/* Image */}
+            {workshop.image_url && (
+              <div style={{ position: 'relative', aspectRatio: '16/9', borderRadius: '16px', overflow: 'hidden', background: 'rgba(255,255,255,0.05)' }}>
+                <Image src={workshop.image_url} alt={workshop.title} fill style={{ objectFit: 'cover' }} priority sizes="(max-width:1024px) 100vw, 50vw" />
               </div>
+            )}
 
-              <div className="flex gap-6">
-                <div className="flex items-center gap-2 text-sm text-stone-500">
-                  <Clock className="h-4 w-4" />
-                  <span>{durationLabel}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-stone-500">
-                  <Users className="h-4 w-4" />
-                  <span>Max {workshop.max_participants} participants</span>
-                </div>
-              </div>
-
-              {workshop.highlights?.length > 0 && (
-                <div>
-                  <h3 className="text-xs font-semibold tracking-widest uppercase text-stone-400 mb-4">Highlights</h3>
-                  <ul className="flex flex-col gap-2.5">
-                    {workshop.highlights.map((h, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm text-stone-600">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" />
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {workshop.includes?.length > 0 && (
-                <div className="bg-stone-50 rounded-2xl p-6">
-                  <h3 className="text-xs font-semibold tracking-widest uppercase text-stone-400 mb-4">What's included</h3>
-                  <ul className="flex flex-col gap-2">
-                    {workshop.includes.map((inc, i) => (
-                      <li key={i} className="text-sm text-stone-600 flex items-center gap-2">
-                        <span className="w-1 h-1 bg-stone-400 rounded-full" /> {inc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/* Right: Booking */}
+            {/* Title */}
             <div>
-              <WorkshopBooking workshop={workshop} />
+              <p className="eyebrow eyebrow--light">Workshop</p>
+              <h1 style={{ color: 'var(--white)', fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, lineHeight: 1.1, marginTop: '0.5rem', marginBottom: '1rem' }}>{workshop.title}</h1>
+              {workshop.description && (
+                <p style={{ color: 'var(--stone)', lineHeight: 1.7, fontSize: '0.95rem' }}>{workshop.description}</p>
+              )}
             </div>
+
+            {/* Meta */}
+            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--stone)', fontSize: '0.9rem' }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.3"/><path d="M8 5v3l2 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
+                {durationLabel}
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--stone)', fontSize: '0.9rem' }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 13v-1a3 3 0 00-3-3H5a3 3 0 00-3 3v1M7 7a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
+                Max {workshop.max_participants} participants
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--stone)', fontSize: '0.9rem' }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5 2 3 5 3.5 7.5c.5 2.5 4.5 4 6.5 1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/><path d="M8 14V8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
+                {formatPrice(workshop.price)} / person
+              </div>
+            </div>
+
+            {/* Highlights */}
+            {workshop.highlights?.length > 0 && (
+              <div>
+                <p className="eyebrow eyebrow--light" style={{ marginBottom: '0.75rem' }}>Highlights</p>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', listStyle: 'none', padding: 0, margin: 0 }}>
+                  {workshop.highlights.map((h, i) => (
+                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', color: 'var(--stone)', fontSize: '0.9rem', lineHeight: 1.5 }}>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: '2px' }}><path d="M3 8l4 4 6-6" stroke="#6db87e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Includes */}
+            {workshop.includes?.length > 0 && (
+              <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '1.25rem' }}>
+                <p className="eyebrow eyebrow--light" style={{ marginBottom: '0.75rem' }}>What&apos;s included</p>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', listStyle: 'none', padding: 0, margin: 0 }}>
+                  {workshop.includes.map((inc, i) => (
+                    <li key={i} style={{ color: 'var(--stone)', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--stone)', flexShrink: 0 }} />
+                      {inc}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          {/* Right: Booking */}
+          <div>
+            <WorkshopBooking workshop={workshop} />
           </div>
         </div>
+
       </main>
       <Footer />
     </>

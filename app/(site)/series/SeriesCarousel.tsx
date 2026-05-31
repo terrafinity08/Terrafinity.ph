@@ -129,6 +129,21 @@ export default function SeriesCarousel() {
   const next = useCallback(() => setSlide(s => Math.min(SERIES.length, s + 1)), [])
 
   useEffect(() => {
+    // Lock all scrolling — only left/right swipe allowed
+    const savedBody = document.body.style.overflow
+    const savedHtml = document.documentElement.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    const blockScroll = (e: TouchEvent) => e.preventDefault()
+    document.addEventListener('touchmove', blockScroll, { passive: false })
+    return () => {
+      document.body.style.overflow = savedBody
+      document.documentElement.style.overflow = savedHtml
+      document.removeEventListener('touchmove', blockScroll)
+    }
+  }, [])
+
+  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') next()
       if (e.key === 'ArrowLeft')  prev()
@@ -149,7 +164,7 @@ export default function SeriesCarousel() {
 
   return (
     <div
-      style={{ position: 'relative', height: '100dvh', overflow: 'hidden', background: '#0a0a0a' }}
+      style={{ position: 'fixed', inset: 0, overflow: 'hidden', background: '#0a0a0a', zIndex: 10 }}
       onTouchStart={e => { touchStartX.current = e.touches[0].clientX }}
       onTouchEnd={e => {
         const dx = e.changedTouches[0].clientX - touchStartX.current

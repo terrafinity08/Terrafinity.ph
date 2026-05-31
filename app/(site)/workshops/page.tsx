@@ -5,6 +5,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { getWorkshops } from '@/lib/actions/workshops'
 import { formatPrice } from '@/lib/utils'
+import WorkshopsFAQ from './WorkshopsFAQ'
 
 export const metadata: Metadata = { title: 'Workshops — Terrafinity' }
 export const dynamic = 'force-dynamic'
@@ -119,6 +120,8 @@ export default async function WorkshopsPage() {
             ))}
           </div>
         </section>
+
+        <WorkshopsFAQ />
 
         {/* Trust bar */}
         <div className="trust-bar">

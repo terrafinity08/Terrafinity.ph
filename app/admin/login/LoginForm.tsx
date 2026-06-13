@@ -2,17 +2,19 @@
 
 import { useState, useTransition } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Leaf } from 'lucide-react'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 
 export default function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const redirect = searchParams.get('redirect') ?? '/admin'
+  const redirectTo = searchParams.get('redirect') ?? '/admin'
+  const urlError   = searchParams.get('error')
+
   const [isPending, startTransition] = useTransition()
-  const [email, setEmail] = useState('')
+  const [email, setEmail]       = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError]       = useState<string | null>(null)
 
   function handleSubmit() {
     setError(null)
@@ -20,53 +22,64 @@ export default function LoginForm() {
     startTransition(async () => {
       const supabase = createClient()
       const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
-      if (authError) { setError('Invalid credentials'); return }
-      router.push(redirect)
+      if (authError) { setError('Invalid credentials. Check your email and password.'); return }
+      router.push(redirectTo)
       router.refresh()
     })
   }
 
   return (
-    <div className="min-h-screen bg-ink flex items-center justify-center px-4">
-      <div className="w-full max-w-sm">
+    <div style={{ minHeight: '100vh', background: 'var(--black)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+      <div style={{ width: '100%', maxWidth: '360px' }}>
+
         {/* Brand */}
-        <div className="flex flex-col items-center gap-3 mb-10">
-          <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
-            <Leaf className="h-6 w-6 text-white/80" />
+        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <div style={{ width: '48px', height: '48px', borderRadius: '14px', background: 'rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3C8 3 5 7 6 11c1 4 6 6 9 3" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M12 21V11" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
           </div>
-          <div className="text-center">
-            <p className="text-white font-serif text-xl font-bold">Terrafinity</p>
-            <p className="text-white/35 text-xs tracking-widest uppercase mt-1">Admin Studio</p>
-          </div>
+          <p style={{ color: 'var(--white)', fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700 }}>Terrafinity</p>
+          <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '0.25rem' }}>Admin Studio</p>
         </div>
 
-        {/* Form */}
-        <div className="bg-white/6 backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col gap-5">
-          <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-white/50 tracking-wide uppercase">Email</label>
+        {/* Unauthorized banner */}
+        {urlError === 'unauthorized' && (
+          <div style={{ background: 'rgba(220,50,50,0.1)', border: '1px solid rgba(220,50,50,0.25)', borderRadius: '12px', padding: '0.9rem 1rem', marginBottom: '1.25rem', color: '#ff8080', fontSize: '0.84rem', lineHeight: 1.5 }}>
+            Access denied. This admin panel belongs to one account only.
+          </div>
+        )}
+
+        {/* Form card */}
+        <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '20px', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+
+          <div>
+            <label style={lbl}>Email</label>
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-              placeholder="admin@terrafinity.ph"
-              className="w-full bg-white/6 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:ring-2 focus:ring-white/20"
+              onChange={e => setEmail(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+              placeholder="terrafinity.ph@gmail.com"
+              style={inp}
             />
           </div>
-          <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-medium text-white/50 tracking-wide uppercase">Password</label>
+
+          <div>
+            <label style={lbl}>Password</label>
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+              onChange={e => setPassword(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleSubmit()}
               placeholder="••••••••"
-              className="w-full bg-white/6 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:ring-2 focus:ring-white/20"
+              style={inp}
             />
           </div>
 
           {error && (
-            <div className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 text-sm text-red-400">
+            <div style={{ background: 'rgba(220,50,50,0.12)', border: '1px solid rgba(220,50,50,0.3)', borderRadius: '10px', padding: '0.75rem 1rem', color: '#ff8080', fontSize: '0.85rem' }}>
               {error}
             </div>
           )}
@@ -74,18 +87,37 @@ export default function LoginForm() {
           <button
             onClick={handleSubmit}
             disabled={isPending}
-            className="w-full bg-white text-ink font-semibold py-3.5 rounded-xl hover:bg-stone-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            style={{ background: 'var(--white)', color: 'var(--black)', border: 'none', borderRadius: '12px', padding: '0.9rem', fontWeight: 700, fontSize: '0.9rem', cursor: isPending ? 'wait' : 'pointer', opacity: isPending ? 0.7 : 1, marginTop: '0.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
           >
             {isPending && (
-              <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ animation: 'spin 1s linear infinite' }}>
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               </svg>
             )}
-            Sign in
+            {isPending ? 'Signing in…' : 'Sign in'}
           </button>
         </div>
+
+        {/* First-time setup link */}
+        <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'rgba(255,255,255,0.2)', fontSize: '0.8rem' }}>
+          First time here?{' '}
+          <Link href="/admin/setup" style={{ color: 'rgba(255,255,255,0.45)', textDecoration: 'underline' }}>
+            Create your account →
+          </Link>
+        </p>
+
       </div>
     </div>
   )
+}
+
+const lbl: React.CSSProperties = {
+  display: 'block', fontSize: '0.7rem', letterSpacing: '0.12em',
+  textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '0.4rem',
+}
+
+const inp: React.CSSProperties = {
+  width: '100%', background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)',
+  borderRadius: '10px', padding: '0.8rem 1rem', color: 'var(--white)', fontSize: '0.9rem',
+  outline: 'none', boxSizing: 'border-box',
 }

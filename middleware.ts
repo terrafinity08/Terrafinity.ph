@@ -1,7 +1,11 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
+// Only this email can ever access the admin panel
+const OWNER_EMAIL = process.env.ADMIN_EMAIL ?? 'terrafinity.ph@gmail.com'
+
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
   let supabaseResponse = NextResponse.next({ request })
 
   const supabase = createServerClient(
@@ -11,9 +15,7 @@ export async function middleware(request: NextRequest) {
       cookies: {
         getAll() { return request.cookies.getAll() },
         setAll(cookiesToSet: { name: string; value: string; options?: Record<string, unknown> }[]) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value)
-          )
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
           supabaseResponse = NextResponse.next({ request })
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options as Parameters<typeof supabaseResponse.cookies.set>[2])
@@ -25,24 +27,32 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Protect /admin routes (except /admin/login)
-  if (
-    request.nextUrl.pathname.startsWith('/admin') &&
-    !request.nextUrl.pathname.startsWith('/admin/login')
-  ) {
+  const isSetup     = pathname.startsWith('/admin/setup')
+  const isLogin     = pathname === '/admin/login'
+  const isProtected = pathname.startsWith('/admin') && !isLogin && !isSetup
+
+  // Protected admin routes — must be logged in AND be the owner
+  if (isProtected) {
     if (!user) {
-      const loginUrl = request.nextUrl.clone()
-      loginUrl.pathname = '/admin/login'
-      loginUrl.searchParams.set('redirect', request.nextUrl.pathname)
-      return NextResponse.redirect(loginUrl)
+      const url = request.nextUrl.clone()
+      url.pathname = '/admin/login'
+      url.searchParams.set('redirect', pathname)
+      return NextResponse.redirect(url)
+    }
+    if (user.email !== OWNER_EMAIL) {
+      // Someone else's account — block and show error
+      const url = request.nextUrl.clone()
+      url.pathname = '/admin/login'
+      url.searchParams.set('error', 'unauthorized')
+      return NextResponse.redirect(url)
     }
   }
 
-  // Redirect authenticated users away from login
-  if (request.nextUrl.pathname === '/admin/login' && user) {
-    const adminUrl = request.nextUrl.clone()
-    adminUrl.pathname = '/admin'
-    return NextResponse.redirect(adminUrl)
+  // Login page — if already owner, go straight to dashboard
+  if (isLogin && user && user.email === OWNER_EMAIL) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/admin'
+    return NextResponse.redirect(url)
   }
 
   return supabaseResponse
